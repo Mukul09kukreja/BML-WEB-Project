@@ -1,1 +1,6 @@
-/npm_modules
+node_modules/
+ignore/
+.env
+.DS_Store
+*.log
+
