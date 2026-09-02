@@ -1,0 +1,241 @@
+/* Market Page */ main  {
+  background-image: url("src/bg-card.jpg");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  padding: 55px 6%;
+  min-height: calc(100vh - 70px);
+  color: #f9fafb;
+}
+
+/* Intro */ .market-intro  {
+  margin-bottom: 35px;
+}
+
+.market-intro h1  {
+  font-size: 3rem;
+  margin-bottom: 12px;
+}
+
+.market-intro p  {
+  color: #d1d5db;
+  font-size: 1.1rem;
+}
+
+/* Index Cards */ .index-cards  {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+  margin-bottom: 25px;
+}
+
+.index-card  {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 10px;
+  padding: 22px;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.index-card:hover  {
+  transform: translateY(-3px);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.index-card h3  {
+  color: #d1d5db;
+  font-size: 0.9rem;
+  margin-bottom: 15px;
+}
+
+.index-card p  {
+  font-size: 1.7rem;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.positive  {
+  color: #34d399;
+}
+
+.negative  {
+  color: #f87171;
+}
+
+/* Dashboard */ .market-dashboard  {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 20px;
+}
+
+/* Graph */ .market-graph  {
+  /* Translucent glass background */ background: rgba(255, 255, 255, 0.08);
+  /* Blur whatever is behind the card */ backdrop-filter: blur(10px);
+  /* Glass border */ border: 1px solid rgba(255, 255, 255, 0.15);
+  /* Rounded corners */ border-radius: 10px;
+  /* Space between the box edge and its contents */ padding: 25px;
+  /* Keep the image inside the rounded box */ overflow: hidden;
+}
+
+Graph Image .market-graph img  {
+  /* Use all available width inside the box */ width: 100%;
+  /* Automatically maintain the image's proportions */ height: auto;
+  /* Remove weird inline-image spacing */ display: block;
+  /* Slightly round the image itself */ border-radius: 6px;
+  /* Fake graph-changing animation */ transition: opacity 0.25s ease, filter 0.25s ease, transform 0.25s ease;
+}
+
+/* Fake Graph Change Animation */ .market-graph img.graph-changing  {
+  opacity: 0;
+  filter: blur(8px);
+  transform: scale(0.985);
+}
+
+/* Fake graph change animation */ .market-graph img.graph-changing  {
+  opacity: 0;
+  filter: blur(8px);
+  transform: scale(0.985);
+}
+
+.graph-heading  {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 15px;
+}
+
+.graph-heading h2  {
+  margin-bottom: 5px;
+}
+
+.graph-heading p  {
+  color: #9ca3af;
+  font-size: 0.9rem;
+}
+
+#graph-change  {
+  font-weight: bold;
+  padding: 8px 12px;
+  background: rgba(52, 211, 153, 0.12);
+  border-radius: 6px;
+}
+
+/* Graph Buttons */ .market-selector, .time-selector  {
+  display: flex;
+  gap: 8px;
+  margin-top: 15px;
+}
+
+.market-selector button, .time-selector button  {
+  background: rgba(255, 255, 255, 0.08);
+  color: #d1d5db;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  padding: 8px 13px;
+  cursor: pointer;
+}
+
+.market-selector button:hover, .time-selector button:hover  {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.market-selector .selected, .time-selector .selected  {
+  background: #34d399;
+  color: #111827;
+  font-weight: bold;
+}
+
+/* Sidebar */ .market-sidebar  {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.stock-list  {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 10px;
+  padding: 22px;
+}
+
+/* Stock List */ .stock-list-heading  {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.stock-list-heading h2  {
+  font-size: 1.15rem;
+}
+
+.stock-list-heading span  {
+  font-size: 0.8rem;
+}
+
+.stock  {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.stock:last-child  {
+  border-bottom: none;
+}
+
+.stock section  {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.stock small  {
+  color: #6b7280;
+  font-size: 0.75rem;
+}
+
+.stock > span  {
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+
+/* Note */ .market-note  {
+  margin-top: 20px;
+  color: #9ca3af;
+  font-size: 0.8rem;
+  text-align: center;
+}
+
+/* Responsive */ @media (max-width: 1000px)  {
+  .index-cards  {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .market-dashboard  {
+    grid-template-columns: 1fr;
+  }
+
+}
+
+@media (max-width: 600px)  {
+  main  {
+    padding: 35px 20px;
+  }
+
+  .index-cards  {
+    grid-template-columns: 1fr;
+  }
+
+  .market-intro h1  {
+    font-size: 2.2rem;
+  }
+
+  .market-selector  {
+    flex-wrap: wrap;
+  }
+
+}
