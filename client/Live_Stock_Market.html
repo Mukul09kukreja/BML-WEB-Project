@@ -1,0 +1,407 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    />
+
+    <meta
+        name="Stocks-Now"
+        content="Project"
+    />
+
+    <title>Stocks-Now</title>
+
+    <link
+        rel="stylesheet"
+        href="styles.css"
+    />
+
+    <link
+        rel="stylesheet"
+        href="live_stock_market.css"
+    />
+
+</head>
+
+
+<body>
+
+    <!---- Navigation Bar- ---->
+
+    <header>
+        <nav class="nav-bar">
+            <h3 class="nav-heading">
+                📊 Markets & Stocks
+            </h3>
+
+            <section class="nav-items">
+
+                <a href="index.html">
+                    Home
+                </a>
+                <a href="#explore">
+                    Explore Funds
+                </a>
+                <a href="#about-us">
+                    About Us
+                </a>
+
+                <button
+                    onclick="location.href = 'login.html'"
+                >
+                    Login
+                </button>
+
+            </section>
+        </nav>
+    </header>
+
+
+    <!--- Main Content--->
+
+    <main>
+
+
+        <!--- Market Introduction  --->
+
+        <section class="market-intro">
+
+            <h1>
+                Market Overview
+            </h1>
+
+            <p>
+                Keep track of major market indices and today's
+                market movement.
+            </p>
+
+        </section>
+
+
+
+        <!---  Index Cards --->
+
+        <section class="index-cards">
+
+
+            <!--- NIFTY 50 --->
+
+            <article class="index-card">
+
+                <h3>
+                    NIFTY 50
+                </h3>
+
+                <p>
+                    24,638.90
+                </p>
+
+                <span class="positive">
+                    +201.15 (+0.82%)
+                </span>
+
+            </article>
+
+
+
+            <!--- SENSEX --->
+
+            <article class="index-card">
+
+                <h3>
+                    SENSEX
+                </h3>
+
+                <p>
+                    80,567.30
+                </p>
+
+                <span class="positive">
+                    +488.78 (+0.61%)
+                </span>
+
+            </article>
+
+
+
+            <!--- NIFTY 100 --->
+
+            <article class="index-card">
+
+                <h3>
+                    NIFTY 100
+                </h3>
+
+                <p>
+                    25,421.10
+                </p>
+
+                <span class="negative">
+                    -30.42 (-0.12%)
+                </span>
+
+            </article>
+
+
+
+            <!-- NIFTY 500 -->
+
+            <article class="index-card">
+
+                <h3>
+                    NIFTY 500
+                </h3>
+
+                <p>
+                    23,812.40
+                </p>
+
+                <span class="positive">
+                    +102.18 (+0.43%)
+                </span>
+
+            </article>
+
+
+        </section>
+
+
+
+        <!-- Market Dashboard -->
+
+        <section class="market-dashboard">
+
+
+            <!-- Graph Section -->
+
+            <article class="market-graph">
+
+
+                <!-- Graph Heading -->
+
+                <section class="graph-heading">
+
+                    <section>
+
+                        <h2 id="selected-market">
+                            NIFTY 50
+                        </h2>
+
+                        <p>
+                            Market performance
+                        </p>
+
+                    </section>
+
+
+                    <span
+                        id="graph-change"
+                        class="positive"
+                    >
+                        +0.82%
+                    </span>
+
+                </section>
+
+
+
+                <!--STATIC GRAPH -->
+
+                <img
+                  id="market-image"
+                  src="src/market-chart.png"
+                  alt="Market performance graph"
+                >
+
+
+
+                <!-- Market Selector -->
+
+                <section class="market-selector">
+
+
+                    <button
+                        type="button"
+                        class="selected"
+                        data-market="NIFTY 50"
+                    >
+                        NIFTY 50
+                    </button>
+
+
+                    <button
+                        type="button"
+                        data-market="SENSEX"
+                    >
+                        SENSEX
+                    </button>
+
+
+                    <button
+                        type="button"
+                        data-market="NIFTY 100"
+                    >
+                        NIFTY 100
+                    </button>
+
+
+                    <button
+                        type="button"
+                        data-market="NIFTY 500"
+                    >
+                        NIFTY 500
+                    </button>
+
+
+                </section>
+
+
+
+                <!--Time Selector -->
+
+                <section class="time-selector">
+
+
+                    <button
+                        type="button"
+                        class="selected"
+                        data-time="1D"
+                    >
+                        1D
+                    </button>
+
+
+                    <button
+                        type="button"
+                        data-time="1W"
+                    >
+                        1W
+                    </button>
+
+
+                    <button
+                        type="button"
+                        data-time="1M"
+                    >
+                        1M
+                    </button>
+
+
+                    <button
+                        type="button"
+                        data-time="1Y"
+                    >
+                        1Y
+                    </button>
+
+
+                </section>
+
+
+            </article>
+
+
+
+            <!-- Gainers / Losers Sidebar-->
+
+            <aside class="market-sidebar">
+
+
+                <!-- Top Performers -->
+
+                <section class="stock-list">
+
+
+                    <section class="stock-list-heading">
+
+                        <h2>
+                            Top Performers
+                        </h2>
+
+                        <span class="positive">
+                            Today
+                        </span>
+
+                    </section>
+
+
+                    <!--JavaScript puts the stocks here.-->
+
+                    <section id="top-performers">
+
+
+                    </section>
+
+
+                </section>
+
+
+
+                <!--  Top Losers -->
+
+                <section class="stock-list">
+
+
+                    <section class="stock-list-heading">
+
+                        <h2>
+                            Top Losers
+                        </h2>
+
+                        <span class="negative">
+                            Today
+                        </span>
+
+                    </section>
+
+
+                    <!--JavaScript puts the stocks here.-->
+
+                    <section id="top-losers">
+
+
+                    </section>
+
+
+                </section>
+
+
+            </aside>
+
+
+        </section>
+
+
+
+        <!-- Disclaimer-->
+
+        <p class="market-note">
+
+            Market data shown is for demonstration purposes only
+            and is not real-time financial data.
+
+        </p>
+
+
+    </main>
+
+
+
+    <!-- Footer -->
+
+    <footer>
+    </footer>
+
+
+
+    <!--  JavaScript -->
+
+    <script src="live_stock_market.js"></script>
+
+</body>
+
+</html>
