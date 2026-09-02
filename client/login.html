@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Sign in — Markets & Stocks</title>
+        <link rel="stylesheet" href="loginStyles.css">
+    </head>
+    <body>
+        <main class="auth-page">
+            <section class="auth-copy-col">
+
+            <a href="index.html" class="wordmark">
+                Markets<span class="dot">&amp;</span>Stocks
+            </a>
+
+            <div class="auth-content">
+
+                <div id="panel-signin">
+
+                    <h1>Sign in to your<br>account</h1>
+
+                    <p class="tagline">
+                        Read the numbers before you trust the story.
+                    </p>
+
+                    <div class="auth-card">
+
+                        <form id="signin-form" data-auth-form>
+
+                        <div class="form-error"></div>
+
+                        <button class="btn btn-oauth" type="button">
+                            <span class="icon icon-google"></span>
+                            Continue with Google
+                        </button>
+
+                        <button class="btn btn-oauth" type="button">
+                            <span class="icon icon-apple"></span>
+                            Continue with Apple
+                        </button>
+
+                        <div class="divider">or</div>
+
+                        <input
+                            id="si-email"
+                            type="email"
+                            required
+                            placeholder="Enter your email"
+                            autocomplete="email"
+                        >
+
+                        <button class="btn btn-solid" type="submit">
+                            Continue with email
+                        </button>
+
+                        </form>
+
+                    </div>
+
+                    <a href="#signup" class="pill-link" data-switch="signup">
+                        New to Markets &amp; Stocks? Create an account
+                    </a>
+
+                </div>
+
+                <div id="panel-signup" style="display:none;">
+
+                    <h1>Create your<br>account</h1>
+
+                    <p class="tagline">
+                        Every position, every price, in one register.
+                    </p>
+
+                <div class="auth-card">
+
+                    <form id="signup-form" data-auth-form>
+
+                    <div class="form-error"></div>
+
+                    <button class="btn btn-oauth" type="button">
+                        <span class="icon icon-google"></span>
+                        Continue with Google
+                    </button>
+
+                    <button class="btn btn-oauth" type="button">
+                        <span class="icon icon-apple"></span>
+                        Continue with Apple
+                    </button>
+
+                    <div class="divider">or</div>
+
+                    <input
+                        id="su-name"
+                        type="text"
+                        required
+                        placeholder="Full name"
+                        autocomplete="name"
+                    >
+
+                    <input
+                        id="su-email"
+                        type="email"
+                        required
+                        placeholder="Enter your email"
+                        autocomplete="email"
+                    >
+
+                    <input
+                        id="su-password"
+                        type="password"
+                        required
+                        minlength="8"
+                        placeholder="At least 8 characters"
+                        autocomplete="new-password"
+                    >
+
+                    <button class="btn btn-solid" type="submit">
+                        Create account
+                    </button>
+
+                    </form>
+
+                </div>
+
+                <a href="#signin" class="pill-link" data-switch="signin">
+                    Already have an account? Sign in
+                </a>
+
+                </div>
+
+            </div>
+            </section>
+
+
+            <!-- RIGHT: IMAGE -->
+            <aside class="image-frame">
+
+            <img
+                src="..\client\src\Sign_in_page_image.jpg"
+                alt="Stock market charts, chess pieces and Bitcoin"
+            >
+
+            <div class="image-overlay"></div>
+
+            <div class="image-header">
+
+                <span class="market-status">
+                <i></i>
+                Markets open
+                </span>
+            </div>
+
+            <div class="image-copy">
+                <p class="eyebrow">A clearer view of the market.</p>
+
+                <h2>
+                Invest with<br>
+                <span>conviction.</span>
+                </h2>
+
+                <p class="description">
+                The stock market is a wonderfully efficient mechanism for transferring wealth from the impatient to the patient
+                </p>
+            </div>
+
+            <div class="image-info">
+                <strong>Research before reaction.</strong>
+                <span>01 / 03</span>
+            </div>
+
+            </aside>
+
+        </main>
+
+
+        <script>
+            const signinPanel = document.getElementById("panel-signin");
+            const signupPanel = document.getElementById("panel-signup");
+
+            function showPanel(which) {
+            const isSignup = which === "signup";
+
+            signinPanel.style.display = isSignup ? "none" : "block";
+            signupPanel.style.display = isSignup ? "block" : "none";
+
+            document.title = isSignup
+                ? "Create account — Markets & Stocks"
+                : "Sign in — Markets & Stocks";
+            }
+
+            document.querySelectorAll("[data-switch]").forEach(link => {
+            link.addEventListener("click", event => {
+                event.preventDefault();
+
+                const target = link.dataset.switch;
+
+                showPanel(target);
+
+                history.replaceState(
+                null,
+                "",
+                target === "signup" ? "#signup" : "#signin"
+                );
+            });
+            });
+
+            if (location.hash === "#signup") {
+            showPanel("signup");
+            }
+
+            document.querySelectorAll("form").forEach(form => {
+            form.addEventListener("submit", event => {
+                event.preventDefault();
+
+                if (form.checkValidity()) {
+                console.log("Authentication form submitted.");
+                }
+            });
+            });
+        </script>
+
+    </body>
+</html>
