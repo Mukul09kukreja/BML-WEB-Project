@@ -78,24 +78,11 @@
   /* Keep the image inside the rounded box */ overflow: hidden;
 }
 
-Graph Image .market-graph img  {
+/* Graph Image */ .market-graph img  {
   /* Use all available width inside the box */ width: 100%;
   /* Automatically maintain the image's proportions */ height: auto;
   /* Remove weird inline-image spacing */ display: block;
   /* Slightly round the image itself */ border-radius: 6px;
-  /* Fake graph-changing animation */ transition: opacity 0.25s ease, filter 0.25s ease, transform 0.25s ease;
-}
-
-/* Fake Graph Change Animation */ .market-graph img.graph-changing  {
-  opacity: 0;
-  filter: blur(8px);
-  transform: scale(0.985);
-}
-
-/* Fake graph change animation */ .market-graph img.graph-changing  {
-  opacity: 0;
-  filter: blur(8px);
-  transform: scale(0.985);
 }
 
 .graph-heading  {
@@ -127,20 +114,15 @@ Graph Image .market-graph img  {
   margin-top: 15px;
 }
 
-.market-selector button, .time-selector button  {
+.market-selector span, .time-selector span  {
   background: rgba(255, 255, 255, 0.08);
   color: #d1d5db;
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 6px;
   padding: 8px 13px;
-  cursor: pointer;
 }
 
-.market-selector button:hover, .time-selector button:hover  {
-  background: rgba(255, 255, 255, 0.15);
-}
-
-.market-selector .selected, .time-selector .selected  {
+.market-selector span.selected, .time-selector span.selected  {
   background: #34d399;
   color: #111827;
   font-weight: bold;
