@@ -174,51 +174,5 @@
         </main>
 
 
-        <script>
-            const signinPanel = document.getElementById("panel-signin");
-            const signupPanel = document.getElementById("panel-signup");
-
-            function showPanel(which) {
-            const isSignup = which === "signup";
-
-            signinPanel.style.display = isSignup ? "none" : "block";
-            signupPanel.style.display = isSignup ? "block" : "none";
-
-            document.title = isSignup
-                ? "Create account — Markets & Stocks"
-                : "Sign in — Markets & Stocks";
-            }
-
-            document.querySelectorAll("[data-switch]").forEach(link => {
-            link.addEventListener("click", event => {
-                event.preventDefault();
-
-                const target = link.dataset.switch;
-
-                showPanel(target);
-
-                history.replaceState(
-                null,
-                "",
-                target === "signup" ? "#signup" : "#signin"
-                );
-            });
-            });
-
-            if (location.hash === "#signup") {
-            showPanel("signup");
-            }
-
-            document.querySelectorAll("form").forEach(form => {
-            form.addEventListener("submit", event => {
-                event.preventDefault();
-
-                if (form.checkValidity()) {
-                console.log("Authentication form submitted.");
-                }
-            });
-            });
-        </script>
-
     </body>
 </html>
