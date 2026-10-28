@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Market Overview – StockPie</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="pages.css">
+</head>
+<body>
+  <header class="navbar">
+    <a href="index.html" class="logo"><span class="logo-mark"></span>StockPie</a>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="market-overview.html" class="active">Market Overview</a>
+      <a href="markets.html">Markets</a>
+      <a href="market-news.html">Market News</a>
+      <a href="#">Portfolio</a>
+      <a href="#">Dashboard</a>
+    </nav>
+    <div class="nav-actions">
+      <button class="icon-btn" aria-label="Search">&#9906;</button>
+      <button class="icon-btn" aria-label="Notifications">&#9832;</button>
+      <a href="sign-in.html" class="sign-in">Sign in</a>
+      <a href="sign-in.html" class="btn btn-gold btn-small">Get started</a>
+    </div>
+  </header>
+
+  <main class="container page">
+    <p class="eyebrow">Global intelligence</p>
+    <h1 class="page-title">Global market overview</h1>
+    <p class="page-sub">Track financial markets and discover meaningful investment insights.</p>
+
+    <div class="index-grid">
+      <div class="index-card">
+        <span class="tiny-label">S&amp;P 500</span>
+        <strong class="index-value">5,842.91</strong>
+        <em class="up">+0.84% today</em>
+        <svg class="spark" viewBox="0 0 90 30"><polyline points="0.0,28.0 12.9,19.3 25.7,23.7 38.6,10.7 51.4,15.0 64.3,6.3 77.1,10.7 90.0,2.0" fill="none" stroke="#d4af37" stroke-width="1.5"/></svg>
+      </div>
+      <div class="index-card">
+        <span class="tiny-label">NASDAQ</span>
+        <strong class="index-value">18,712.75</strong>
+        <em class="up">+1.12% today</em>
+        <svg class="spark" viewBox="0 0 90 30"><polyline points="0.0,28.0 12.9,19.3 25.7,23.7 38.6,10.7 51.4,15.0 64.3,6.3 77.1,10.7 90.0,2.0" fill="none" stroke="#d4af37" stroke-width="1.5"/></svg>
+      </div>
+      <div class="index-card">
+        <span class="tiny-label">DOW JONES</span>
+        <strong class="index-value">42,387.57</strong>
+        <em class="down">-0.21% today</em>
+        <svg class="spark" viewBox="0 0 90 30"><polyline points="0.0,2.0 12.9,7.2 25.7,2.0 38.6,17.6 51.4,12.4 64.3,22.8 77.1,17.6 90.0,28.0" fill="none" stroke="#e5484d" stroke-width="1.5"/></svg>
+      </div>
+      <div class="index-card">
+        <span class="tiny-label">NIFTY 50</span>
+        <strong class="index-value">24,854.30</strong>
+        <em class="up">+0.42% today</em>
+        <svg class="spark" viewBox="0 0 90 30"><polyline points="0.0,28.0 12.9,19.3 25.7,23.7 38.6,10.7 51.4,15.0 64.3,6.3 77.1,10.7 90.0,2.0" fill="none" stroke="#d4af37" stroke-width="1.5"/></svg>
+      </div>
+      <div class="index-card">
+        <span class="tiny-label">SENSEX</span>
+        <strong class="index-value">81,361.87</strong>
+        <em class="up">+0.36% today</em>
+        <svg class="spark" viewBox="0 0 90 30"><polyline points="0.0,28.0 12.9,19.3 25.7,23.7 38.6,10.7 51.4,15.0 64.3,6.3 77.1,10.7 90.0,2.0" fill="none" stroke="#d4af37" stroke-width="1.5"/></svg>
+      </div>
+      <div class="index-card">
+        <span class="tiny-label">GOLD</span>
+        <strong class="index-value">$2,735.40</strong>
+        <em class="up">+0.18% today</em>
+        <svg class="spark" viewBox="0 0 90 30"><polyline points="0.0,28.0 12.9,19.3 25.7,23.7 38.6,10.7 51.4,15.0 64.3,6.3 77.1,10.7 90.0,2.0" fill="none" stroke="#d4af37" stroke-width="1.5"/></svg>
+      </div>
+    </div>
+
+    <section class="big-chart">
+      <div class="chart-head">
+        <div>
+          <span class="tiny-label">S&amp;P 500 · Index</span>
+          <p class="chart-price">5,842.91 <em class="up">+48.52</em></p>
+        </div>
+        <div class="range-buttons">
+          <button>1D</button><button>1W</button><button>1M</button><button>3M</button><button class="on">1Y</button><button>5Y</button>
+        </div>
+      </div>
+      <svg viewBox="0 0 700 170" preserveAspectRatio="none" class="area-chart">
+        <defs><linearGradient id="ov" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#d4af37" stop-opacity=".3"/><stop offset="1" stop-color="#d4af37" stop-opacity="0"/></linearGradient></defs>
+        <g stroke="#1f1f1f"><line x1="0" x2="700" y1="40" y2="40"/><line x1="0" x2="700" y1="80" y2="80"/><line x1="0" x2="700" y1="120" y2="120"/></g>
+        <path d="M0 160 C21 160 21 152 41 152 C62 152 62 156 82 156 C103 156 103 140 124 140 C144 140 144 132 165 132 C185 132 185 138 206 138 C226 138 226 124 247 124 C268 124 268 116 288 116 C309 116 309 120 329 120 C350 120 350 104 371 104 C391 104 391 88 412 88 C432 88 432 80 453 80 C474 80 474 84 494 84 C515 84 515 68 535 68 C556 68 556 56 576 56 C597 56 597 60 618 60 C638 60 638 40 659 40 C679 40 679 20 700 20 L700 170 L0 170Z" fill="url(#ov)"/>
+        <path d="M0 160 C21 160 21 152 41 152 C62 152 62 156 82 156 C103 156 103 140 124 140 C144 140 144 132 165 132 C185 132 185 138 206 138 C226 138 226 124 247 124 C268 124 268 116 288 116 C309 116 309 120 329 120 C350 120 350 104 371 104 C391 104 391 88 412 88 C432 88 432 80 453 80 C474 80 474 84 494 84 C515 84 515 68 535 68 C556 68 556 56 576 56 C597 56 597 60 618 60 C638 60 638 40 659 40 C679 40 679 20 700 20" fill="none" stroke="#d4af37" stroke-width="2"/>
+      </svg>
+    </section>
+
+    <div class="panels">
+      <section class="panel">
+        <h3>Sector performance</h3>
+        <div class="panel-row"><span>Technology</span><b class="up">+1.82%</b></div>
+        <div class="panel-row"><span>Financials</span><b class="up">+0.64%</b></div>
+        <div class="panel-row"><span>Energy</span><b class="down">-0.38%</b></div>
+        <div class="panel-row"><span>Healthcare</span><b class="up">+0.21%</b></div>
+      </section>
+      <section class="panel">
+        <h3>Top movers</h3>
+        <div class="panel-row"><span>NVDA</span><b class="up">+4.62%</b></div>
+        <div class="panel-row"><span>MSFT</span><b class="up">+2.18%</b></div>
+        <div class="panel-row"><span>TSLA</span><b class="down">-3.42%</b></div>
+        <div class="panel-row"><span>AMD</span><b class="up">+1.84%</b></div>
+      </section>
+      <section class="panel">
+        <h3>Macro indicators</h3>
+        <div class="panel-row"><span>US 10Y</span><b class="">4.18%</b></div>
+        <div class="panel-row"><span>VIX</span><b class="">18.62</b></div>
+        <div class="panel-row"><span>DXY</span><b class="">103.84</b></div>
+        <div class="panel-row"><span>Fed rate</span><b class="">5.25%</b></div>
+      </section>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-grid">
+      <div>
+        <a href="index.html" class="logo"><span class="logo-mark"></span>StockPie</a>
+        <p class="tiny-note">Intelligent investing for a stronger financial future.</p>
+        <p class="tiny-note">© 2025 StockPie. Demonstration experience.</p>
+      </div>
+      <div>
+        <h4>Platform</h4>
+        <a href="markets.html">Markets</a><a href="#">Portfolio</a><a href="#">Dashboard</a>
+      </div>
+      <div>
+        <h4>Resources</h4>
+        <a href="market-news.html">Market news</a><a href="#">Risk disclosure</a><a href="#">Privacy</a>
+      </div>
+      <div>
+        <h4>Important information</h4>
+        <p class="tiny-note">Investing involves risk, including loss of principal. All figures and content shown are illustrative.</p>
+      </div>
+    </div>
+  </footer>
+  <script src="script.js"></script>
+</body>
+</html>
