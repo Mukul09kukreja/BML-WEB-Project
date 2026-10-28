@@ -1,89 +1,313 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="Stocks-Now" content="Project" />
-    <title>Stocks-Now</title>
-    <link rel="stylesheet" href="styles.css" />
-  </head>
-  <body>
-    <header>
-      <nav class="nav-bar">
-        <h3 class="nav-heading">📊 Markets & Stocks</h3>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>StockPie – Smart passive investing</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
 
-        <section class="nav-items">
-          <a href="#home">Home</a>
-          <a href="Live_Stock_Market.html">Market Overview</a>
-          <a href="AboutUs.html">About Us</a>
+  <!-- NAVBAR -->
+  <header class="navbar">
+    <a href="#" class="logo"><span class="logo-mark"></span>StockPie</a>
+    <nav>
+      <a href="#" class="active">Home</a>
+      <a href="#">Market Overview</a>
+      <a href="#">Markets</a>
+      <a href="#">Market News</a>
+      <a href="#">Portfolio</a>
+      <a href="#">Dashboard</a>
+    </nav>
+    <div class="nav-actions">
+      <button class="icon-btn" aria-label="Search">&#9906;</button>
+      <button class="icon-btn" aria-label="Notifications">&#9832;</button>
+      <a href="#" class="sign-in">Sign in</a>
+      <a href="#" class="btn btn-gold btn-small">Get started</a>
+    </div>
+  </header>
 
-          <button onclick="location.href = 'login.html'">Login</button>
-        </section>
-      </nav>
-    </header>
-    <main>
-      <section class="front-card">
-        <section class="head-content">
-          <h1 id="head1" class="headline">Passive Funds for You!!</h1>
-          <p class="headline">
-            A passive fund trading suggestion platform that can help you inrich
-            your portfolio.
-          </p>
-        </section>
-        <section class="blur-card">
-          <section class="head-description">
-            <h3>Smart Suggestions</h3>
-            <p>Get suggestions based on <br>market trends and <br>fund performance.</p>
-          </section>
-
-          <section class="head-description">
-            <h3>Market Overview</h3>
-            <p>Keep an eye on <br>the performance of <br>the market.</p>
-          </section>
-
-          <section class="head-description">
-            <h3>Build Your Portfolio</h3>
-            <p>Discover funds that <br>can help diversify <br>your portfolio.</p>
-          </section>
-
-          <section class="head-description">
-            <h3>Simple & Fast</h3>
-            <p>Make better investment <br>decisions with a <br>simple interface.</p>
-          </section>
-        </section>
-      </section>
-    </main>
-    <footer class="site-footer">
-      <div class="footer-content">
-        <section class="footer-brand">
-          <h2>📊 Stocks Now</h2>
-          <p>Smart suggestions for smarter investing.</p>
-        </section>
-
-        <nav class="footer-nav" aria-label="Footer navigation">
-          <h3>Explore</h3>
-          <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="Live_Stock_Market.html">Explore Funds</a></li>
-            <li><a href="AboutUs.html">About Us</a></li>
-          </ul>
-        </nav>
-
-        <address class="footer-contact">
-          <h3>Connect</h3>
-          <ul>
-            <li><a href="#">GitHub</a></li>
-            <li><a href="#">LinkedIn</a></li>
-            <li><a href="contact.html">Contact Us</a></li>
-          </ul>
-        </address>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container hero-inner">
+      <div class="hero-text">
+        <p class="eyebrow">The future of smart investing</p>
+        <h1>Your <span class="gold">Wealth.</span><br>Your Strategy.<br>Your Future.</h1>
+        <p class="hero-sub">Take control of your financial future with intelligent passive investment strategies, powerful market insights, and effortless portfolio management.</p>
+        <div class="hero-buttons">
+          <a href="#" class="btn btn-gold">Start investing &rarr;</a>
+          <a href="#" class="btn btn-dark">Explore markets</a>
+        </div>
+        <ul class="hero-checks">
+          <li>Diversified investing</li>
+          <li>Data-driven insights</li>
+          <li>Long-term growth</li>
+        </ul>
       </div>
 
-      <div class="footer-bottom">
-        <p>&copy; 2026 Stocks Now. All rights reserved.</p>
-        <p>Built for smarter investing.</p>
+      <div class="demo-card">
+        <div class="demo-top">
+          <span class="tiny-label">Demo portfolio</span>
+          <span class="live-tag">Live preview</span>
+        </div>
+        <p class="demo-label">Portfolio value</p>
+        <p class="demo-value">$128,450.75</p>
+        <p class="demo-change">+$18,450.75 <span class="badge-green">+16.77%</span></p>
+        <svg class="demo-chart" viewBox="0 0 300 90" preserveAspectRatio="none">
+          <defs>
+            <linearGradient id="heroFill" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#d4af37" stop-opacity=".35"/>
+              <stop offset="1" stop-color="#d4af37" stop-opacity="0"/>
+            </linearGradient>
+          </defs>
+          <path d="M0 80 L30 62 L50 66 L80 40 L105 48 L135 30 L165 42 L200 22 L235 30 L265 12 L300 8 L300 90 L0 90Z" fill="url(#heroFill)"/>
+          <path d="M0 80 L30 62 L50 66 L80 40 L105 48 L135 30 L165 42 L200 22 L235 30 L265 12 L300 8" fill="none" stroke="#d4af37" stroke-width="2"/>
+        </svg>
+        <div class="legend">
+          <span><i class="dot gold-dot"></i>Equities<b>62%</b></span>
+          <span><i class="dot grey-dot"></i>Bonds<b>24%</b></span>
+          <span><i class="dot dark-dot"></i>Alternatives<b>14%</b></span>
+        </div>
       </div>
-    </footer>
-    <script src="main.js"></script>
-  </body>
+    </div>
+
+    <!-- market ticker -->
+    <div class="ticker">
+      <div class="tick"><div><span>S&amp;P 500</span><strong>5,842.91</strong><em class="up">+0.74%</em></div></div>
+      <div class="tick"><div><span>NASDAQ</span><strong>18,712.75</strong><em class="up">+1.12%</em></div></div>
+      <div class="tick"><div><span>DOW JONES</span><strong>42,387.57</strong><em class="down">-0.21%</em></div></div>
+      <div class="tick"><div><span>NIFTY 50</span><strong>24,854.30</strong><em class="up">+0.42%</em></div></div>
+      <div class="tick"><div><span>SENSEX</span><strong>81,361.87</strong><em class="up">+0.36%</em></div></div>
+    </div>
+  </section>
+
+  <!-- WHY STOCKPIE -->
+  <section class="section">
+    <div class="container">
+      <p class="eyebrow">Why StockPie</p>
+      <div class="split-head">
+        <h2>Investing made <span class="gold">intelligent.</span></h2>
+        <p class="muted">Everything you need to understand markets, diversify your investments, and make informed financial decisions.</p>
+      </div>
+
+      <div class="features">
+        <article class="feature">
+          <span class="feature-num">01</span>
+          <div class="feature-icon">&#9638;</div>
+          <h3>Smart diversification</h3>
+          <p>Build resilient portfolios with research-led allocations across global assets.</p>
+          <a href="#" class="link-small">Learn more &rarr;</a>
+        </article>
+        <article class="feature">
+          <span class="feature-num">02</span>
+          <div class="feature-icon">&#9617;</div>
+          <h3>Long-term wealth building</h3>
+          <p>Stay focused on your goals with disciplined, passive investment strategies.</p>
+          <a href="#" class="link-small">Learn more &rarr;</a>
+        </article>
+        <article class="feature">
+          <span class="feature-num">03</span>
+          <div class="feature-icon">&#9678;</div>
+          <h3>Market intelligence</h3>
+          <p>Cut through the noise with clear, contextual insights across global markets.</p>
+          <a href="#" class="link-small">Learn more &rarr;</a>
+        </article>
+        <article class="feature">
+          <span class="feature-num">04</span>
+          <div class="feature-icon">&#9711;</div>
+          <h3>Effortless tracking</h3>
+          <p>Understand every movement with a unified, transparent portfolio view.</p>
+          <a href="#" class="link-small">Learn more &rarr;</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- STRATEGIES -->
+  <section class="section section-alt">
+    <div class="container">
+      <p class="eyebrow">Built for your ambition</p>
+      <h2>Strategies designed<br>around your goals.</h2>
+
+      <div class="strategies">
+        <article class="strategy">
+          <p class="tiny-label">Strategy 01</p>
+          <h3>Conservative</h3>
+          <p class="muted-sm">Lower volatility</p>
+          <div class="row"><span>Risk level</span><div class="bars"><i class="on"></i><i class="on"></i><i></i><i></i><i></i></div></div>
+          <div class="row"><span>Example allocation</span><span class="alloc">35% Equity · 55% Bonds · 10% Cash</span></div>
+          <div class="row"><span>Investment horizon</span><span>3–5 years</span></div>
+          <a href="#" class="btn btn-outline">Explore strategy &rarr;</a>
+        </article>
+
+        <article class="strategy featured">
+          <span class="popular">Most popular</span>
+          <p class="tiny-label">Strategy 02</p>
+          <h3>Balanced</h3>
+          <p class="muted-sm">Growth &amp; stability</p>
+          <div class="row"><span>Risk level</span><div class="bars"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></div></div>
+          <div class="row"><span>Example allocation</span><span class="alloc">60% Equity · 30% Bonds · 10% Gold</span></div>
+          <div class="row"><span>Investment horizon</span><span>5–10 years</span></div>
+          <a href="#" class="btn btn-outline">Explore strategy &rarr;</a>
+        </article>
+
+        <article class="strategy">
+          <p class="tiny-label">Strategy 03</p>
+          <h3>Growth</h3>
+          <p class="muted-sm">Long-term growth</p>
+          <div class="row"><span>Risk level</span><div class="bars"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></div></div>
+          <div class="row"><span>Example allocation</span><span class="alloc">85% Equity · 10% Bonds · 5% Cash</span></div>
+          <div class="row"><span>Investment horizon</span><span>10+ years</span></div>
+          <a href="#" class="btn btn-outline">Explore strategy &rarr;</a>
+        </article>
+      </div>
+      <p class="disclaimer">Illustrative strategies only. All investing involves risk, including possible loss of principal.</p>
+    </div>
+  </section>
+
+  <!-- CALCULATOR -->
+  <section class="section">
+    <div class="container calc">
+      <div class="calc-left">
+        <p class="eyebrow">Wealth calculator</p>
+        <h2>See what consistency can <span class="gold">build.</span></h2>
+        <p class="muted-sm">Small, disciplined contributions can compound into meaningful progress over time.</p>
+
+        <div class="slider-block">
+          <label for="initial"><span>Initial investment</span><strong id="initialOut">$10,000</strong></label>
+          <input type="range" id="initial" min="1000" max="100000" step="1000" value="10000">
+        </div>
+        <div class="slider-block">
+          <label for="monthly"><span>Monthly contribution</span><strong id="monthlyOut">$500</strong></label>
+          <input type="range" id="monthly" min="0" max="5000" step="50" value="500">
+        </div>
+      </div>
+
+      <div class="calc-card">
+        <p class="muted-sm">Estimated portfolio value</p>
+        <p class="calc-value" id="finalValue">$102,900</p>
+        <p class="tiny-note">After 10 years · 7% assumed annual return</p>
+        <svg class="calc-chart" viewBox="0 0 400 130" preserveAspectRatio="none">
+          <defs>
+            <linearGradient id="calcFill" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#d4af37" stop-opacity=".3"/>
+              <stop offset="1" stop-color="#d4af37" stop-opacity="0"/>
+            </linearGradient>
+          </defs>
+          <path d="M0 110 L40 95 L70 100 L110 72 L150 80 L190 60 L230 66 L270 42 L310 50 L350 22 L400 12 L400 130 L0 130Z" fill="url(#calcFill)"/>
+          <path d="M0 110 L40 95 L70 100 L110 72 L150 80 L190 60 L230 66 L270 42 L310 50 L350 22 L400 12" fill="none" stroke="#d4af37" stroke-width="2"/>
+        </svg>
+        <div class="calc-totals">
+          <div><span>Total invested</span><strong id="invested">$70,000</strong></div>
+          <div><span>Est. growth</span><strong class="gold" id="growth">$32,900</strong></div>
+        </div>
+        <p class="tiny-note">Hypothetical projection. Does not guarantee future performance.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- INSIGHTS -->
+  <section class="section">
+    <div class="container">
+      <p class="eyebrow">Market intelligence</p>
+      <div class="split-head">
+        <h2>Insights that move<br>you forward.</h2>
+        <a href="#" class="btn btn-dark">View all insights</a>
+      </div>
+
+      <div class="insights">
+        <article class="insight">
+          <div class="insight-img img-one"><span class="tag">Global markets</span></div>
+          <p class="tiny-note">Demonstration insight · Oct 18, 2025</p>
+          <h3>Building resilient portfolios in a changing rate environment</h3>
+          <p class="muted-sm">Clear context and durable principles for thoughtful long-term investors.</p>
+          <a href="#" class="link-small">Read insight &rarr;</a>
+        </article>
+        <article class="insight">
+          <div class="insight-img img-two"><span class="tag">Investing</span></div>
+          <p class="tiny-note">Demonstration insight · Oct 17, 2025</p>
+          <h3>Why quality matters when markets feel uncertain</h3>
+          <p class="muted-sm">Clear context and durable principles for thoughtful long-term investors.</p>
+          <a href="#" class="link-small">Read insight &rarr;</a>
+        </article>
+        <article class="insight">
+          <div class="insight-img img-three"><span class="tag">Perspective</span></div>
+          <p class="tiny-note">Demonstration insight · Oct 16, 2025</p>
+          <h3>The quiet power of staying invested</h3>
+          <p class="muted-sm">Clear context and durable principles for thoughtful long-term investors.</p>
+          <a href="#" class="link-small">Read insight &rarr;</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- CALL TO ACTION -->
+  <section class="cta">
+    <p class="eyebrow">Your next chapter</p>
+    <h2>The future of your wealth<br>starts <span class="gold">here.</span></h2>
+    <p class="muted-sm">Build a stronger financial future with StockPie.</p>
+    <a href="#" class="btn btn-gold">Create your account &rarr;</a>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container footer-grid">
+      <div>
+        <a href="#" class="logo"><span class="logo-mark"></span>StockPie</a>
+        <p class="tiny-note">Intelligent investing for a stronger financial future.</p>
+        <p class="tiny-note">© 2025 StockPie. Demonstration experience.</p>
+      </div>
+      <div>
+        <h4>Platform</h4>
+        <a href="#">Markets</a><a href="#">Portfolio</a><a href="#">Dashboard</a>
+      </div>
+      <div>
+        <h4>Resources</h4>
+        <a href="#">Market news</a><a href="#">Risk disclosure</a><a href="#">Privacy</a>
+      </div>
+      <div>
+        <h4>Important information</h4>
+        <p class="tiny-note">Investing involves risk, including loss of principal. All figures and content shown are illustrative.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // wealth calculator – contributions added once a year, 7% return
+    const initial = document.getElementById('initial');
+    const monthly = document.getElementById('monthly');
+    const RATE = 0.07;
+    const YEARS = 10;
+
+    const money = n => '$' + Math.round(n).toLocaleString('en-US');
+
+    function update() {
+      const start = Number(initial.value);
+      const perYear = Number(monthly.value) * 12;
+
+      const growthFactor = Math.pow(1 + RATE, YEARS);
+      const final = start * growthFactor + perYear * ((growthFactor - 1) / RATE);
+      const invested = start + perYear * YEARS;
+
+      document.getElementById('initialOut').textContent = money(start);
+      document.getElementById('monthlyOut').textContent = money(monthly.value);
+      document.getElementById('finalValue').textContent = money(final);
+      document.getElementById('invested').textContent = money(invested);
+      document.getElementById('growth').textContent = money(final - invested);
+
+      // fill the slider track up to the thumb
+      [initial, monthly].forEach(s => {
+        const pct = (s.value - s.min) / (s.max - s.min) * 100;
+        s.style.setProperty('--fill', pct + '%');
+      });
+    }
+
+    initial.addEventListener('input', update);
+    monthly.addEventListener('input', update);
+    update();
+  </script>
+</body>
 </html>
