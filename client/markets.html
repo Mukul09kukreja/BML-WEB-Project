@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Markets – StockPie</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="pages.css">
+</head>
+<body>
+  <header class="navbar">
+    <a href="index.html" class="logo"><span class="logo-mark"></span>StockPie</a>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="market-overview.html">Market Overview</a>
+      <a href="markets.html" class="active">Markets</a>
+      <a href="market-news.html">Market News</a>
+      <a href="#">Portfolio</a>
+      <a href="#">Dashboard</a>
+    </nav>
+    <div class="nav-actions">
+      <button class="icon-btn" aria-label="Search">&#9906;</button>
+      <button class="icon-btn" aria-label="Notifications">&#9832;</button>
+      <a href="sign-in.html" class="sign-in">Sign in</a>
+      <a href="sign-in.html" class="btn btn-gold btn-small">Get started</a>
+    </div>
+  </header>
+
+  <main class="container page">
+    <p class="eyebrow">Discover opportunity</p>
+    <h1 class="page-title">Explore markets</h1>
+    <p class="page-sub">Research global stocks, ETFs, indices and funds.</p>
+
+    <label class="search-box">
+      <span>&#9906;</span>
+      <input type="search" placeholder="Search stocks, ETFs, indices, funds...">
+    </label>
+    <div class="chips"><button class="chip on" data-filter="all">All markets</button><button class="chip" data-filter="stocks">Stocks</button><button class="chip" data-filter="etfs">ETFs</button><button class="chip" data-filter="indices">Indices</button><button class="chip" data-filter="bonds">Bonds</button><button class="chip" data-filter="commodities">Commodities</button><button class="chip" data-filter="currencies">Currencies</button></div>
+
+    <section class="table-card">
+      <div class="table-head">
+        <h3>Market universe</h3>
+        <p class="tiny-note">Sample pricing · delayed</p>
+      </div>
+      <div class="table-scroll">
+      <table>
+        <thead>
+          <tr><th>Asset</th><th>Ticker</th><th>Price</th><th>Daily change</th><th>Market size</th><th>Volume</th><th>Trend</th></tr>
+        </thead>
+        <tbody>
+          <tr data-type="stocks">
+            <td><span class="avatar">A</span>Apple Inc.</td>
+            <td class="gold-text mono">AAPL</td><td class="mono">$231.41</td>
+            <td class="mono up">+1.24%</td>
+            <td class="mono">$3.48T</td><td class="mono">41.2M</td>
+            <td><svg class="spark" viewBox="0 0 70 22"><polyline points="0.0,20.0 10.0,14.0 20.0,17.0 30.0,8.0 40.0,11.0 50.0,5.0 60.0,8.0 70.0,2.0" fill="none" stroke="#d4af37" stroke-width="1.5"/></svg></td>
+          </tr>
+          <tr data-type="etfs">
+            <td><span class="avatar">V</span>Vanguard S&amp;P 500 ETF</td>
+            <td class="gold-text mono">VOO</td><td class="mono">$525.64</td>
+            <td class="mono up">+0.84%</td>
+            <td class="mono">$1.21T</td><td class="mono">5.8M</td>
+            <td><svg class="spark" viewBox="0 0 70 22"><polyline points="0.0,20.0 10.0,14.0 20.0,17.0 30.0,8.0 40.0,11.0 50.0,5.0 60.0,8.0 70.0,2.0" fill="none" stroke="#d4af37" stroke-width="1.5"/></svg></td>
+          </tr>
+          <tr data-type="stocks">
+            <td><span class="avatar">M</span>Microsoft</td>
+            <td class="gold-text mono">MSFT</td><td class="mono">$428.15</td>
+            <td class="mono up">+0.62%</td>
+            <td class="mono">$3.18T</td><td class="mono">18.4M</td>
+            <td><svg class="spark" viewBox="0 0 70 22"><polyline points="0.0,20.0 10.0,14.0 20.0,17.0 30.0,8.0 40.0,11.0 50.0,5.0 60.0,8.0 70.0,2.0" fill="none" stroke="#d4af37" stroke-width="1.5"/></svg></td>
+          </tr>
+          <tr data-type="bonds">
+            <td><span class="avatar">A</span>iShares Core Bond ETF</td>
+            <td class="gold-text mono">AGG</td><td class="mono">$101.82</td>
+            <td class="mono down">-0.12%</td>
+            <td class="mono">$112B</td><td class="mono">8.1M</td>
+            <td><svg class="spark" viewBox="0 0 70 22"><polyline points="0.0,2.0 10.0,5.6 20.0,2.0 30.0,12.8 40.0,9.2 50.0,16.4 60.0,12.8 70.0,20.0" fill="none" stroke="#e5484d" stroke-width="1.5"/></svg></td>
+          </tr>
+          <tr data-type="commodities">
+            <td><span class="avatar">G</span>SPDR Gold Shares</td>
+            <td class="gold-text mono">GLD</td><td class="mono">$252.81</td>
+            <td class="mono up">+0.18%</td>
+            <td class="mono">$76B</td><td class="mono">6.3M</td>
+            <td><svg class="spark" viewBox="0 0 70 22"><polyline points="0.0,20.0 10.0,14.0 20.0,17.0 30.0,8.0 40.0,11.0 50.0,5.0 60.0,8.0 70.0,2.0" fill="none" stroke="#d4af37" stroke-width="1.5"/></svg></td>
+          </tr>
+        </tbody>
+      </table>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-grid">
+      <div>
+        <a href="index.html" class="logo"><span class="logo-mark"></span>StockPie</a>
+        <p class="tiny-note">Intelligent investing for a stronger financial future.</p>
+        <p class="tiny-note">© 2025 StockPie. Demonstration experience.</p>
+      </div>
+      <div>
+        <h4>Platform</h4>
+        <a href="markets.html">Markets</a><a href="#">Portfolio</a><a href="#">Dashboard</a>
+      </div>
+      <div>
+        <h4>Resources</h4>
+        <a href="market-news.html">Market news</a><a href="#">Risk disclosure</a><a href="#">Privacy</a>
+      </div>
+      <div>
+        <h4>Important information</h4>
+        <p class="tiny-note">Investing involves risk, including loss of principal. All figures and content shown are illustrative.</p>
+      </div>
+    </div>
+  </footer>
+  <script src="script.js"></script>
+</body>
+</html>
