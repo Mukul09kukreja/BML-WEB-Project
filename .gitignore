@@ -3,4 +3,4 @@ ignore/
 .env
 .DS_Store
 *.log
-
+*.json

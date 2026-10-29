@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Portfolio – StockPie</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="pages.css">
+</head>
+<body>
+
+  <header class="navbar">
+    <a href="index.html" class="logo"><span class="logo-mark"></span>StockPie</a>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="market-overview.html">Market Overview</a>
+      <a href="markets.html">Markets</a>
+      <a href="market-news.html">Market News</a>
+      <a href="portfolio.html" class="active">Portfolio</a>
+      <a href="dashboard.html">Dashboard</a>
+    </nav>
+    <div class="nav-actions">
+      <button class="icon-btn" aria-label="Search">&#9906;</button>
+      <button class="icon-btn" aria-label="Notifications">&#9832;</button>
+      <a href="sign-in.html" class="sign-in">Sign in</a>
+      <a href="sign-in.html" class="btn btn-gold btn-small">Get started</a>
+    </div>
+  </header>
+
+  <main class="container page">
+    <p class="eyebrow">Your investments</p>
+    <h1 class="page-title">Portfolio</h1>
+    <p class="page-sub">A closer look at what you own, how it's allocated and how it has performed.</p>
+
+    <!-- summary -->
+    <div class="summary-grid">
+      <div class="index-card">
+        <span class="tiny-label">Total invested</span>
+        <strong class="summary-value">$111,000.00</strong>
+        <em class="muted-em">Cost basis</em>
+      </div>
+      <div class="index-card">
+        <span class="tiny-label">Current value</span>
+        <strong class="summary-value">$128,450.75</strong>
+        <em class="muted-em">Including $3,196.15 cash</em>
+      </div>
+      <div class="index-card">
+        <span class="tiny-label">Total gain</span>
+        <strong class="summary-value up">+$14,254.60</strong>
+        <em class="up">+12.84%</em>
+      </div>
+      <div class="index-card">
+        <span class="tiny-label">Dividends received</span>
+        <strong class="summary-value">$1,126.40</strong>
+        <em class="muted-em">Last 12 months</em>
+      </div>
+    </div>
+
+    <!-- strategy + target allocation -->
+    <div class="dash-grid portfolio-top">
+      <section class="panel">
+        <h3>Allocation vs. target</h3>
+        <p class="tiny-note legend-note"><i class="swatch"></i>Current <i class="swatch target"></i>Target (Balanced strategy)</p>
+
+        <div class="alloc-row">
+          <div class="alloc-top"><span>Equities</span><b>58% <small>/ 60%</small></b></div>
+          <div class="bar-track"><div class="bar-fill" style="width:58%"></div><span class="bar-target" style="left:60%"></span></div>
+        </div>
+        <div class="alloc-row">
+          <div class="alloc-top"><span>Bonds</span><b>24% <small>/ 30%</small></b></div>
+          <div class="bar-track"><div class="bar-fill" style="width:24%"></div><span class="bar-target" style="left:30%"></span></div>
+        </div>
+        <div class="alloc-row">
+          <div class="alloc-top"><span>Gold</span><b>16% <small>/ 10%</small></b></div>
+          <div class="bar-track"><div class="bar-fill" style="width:16%"></div><span class="bar-target" style="left:10%"></span></div>
+        </div>
+        <div class="alloc-row">
+          <div class="alloc-top"><span>Cash</span><b>2% <small>/ 0%</small></b></div>
+          <div class="bar-track"><div class="bar-fill" style="width:2%"></div><span class="bar-target" style="left:0%"></span></div>
+        </div>
+      </section>
+
+      <section class="panel strategy-panel">
+        <h3>Current strategy</h3>
+        <p class="strategy-name">Balanced</p>
+        <p class="muted-sm">Growth &amp; stability</p>
+        <div class="row"><span>Risk level</span><div class="bars"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></div></div>
+        <div class="row"><span>Horizon</span><span>5–10 years</span></div>
+        <div class="rebalance">
+          <p class="tiny-label">Rebalance idea</p>
+          <p>Your gold holding is about 6 points above target. Moving roughly $7,700 from GLD into bonds would bring you back in line.</p>
+        </div>
+        <a href="#" class="btn btn-outline">Review rebalance</a>
+      </section>
+    </div>
+
+    <!-- asset class table -->
+    <section class="table-card dash-block">
+      <div class="table-head">
+        <h3>Holdings by asset class</h3>
+        <p class="tiny-note">Sample data · prices delayed</p>
+      </div>
+      <div class="table-scroll">
+        <table>
+          <thead>
+            <tr><th>Asset class</th><th>Positions</th><th>Value</th><th>Weight</th><th>Return</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><span class="avatar">E</span>Equities</td><td>VOO · AAPL · MSFT</td><td class="mono">$74,483.80</td><td class="mono">58.0%</td><td class="mono up">+17.11%</td></tr>
+            <tr><td><span class="avatar">B</span>Bonds</td><td>AGG</td><td class="mono">$30,546.00</td><td class="mono">23.8%</td><td class="mono down">-0.18%</td></tr>
+            <tr><td><span class="avatar">G</span>Gold</td><td>GLD</td><td class="mono">$20,224.80</td><td class="mono">15.7%</td><td class="mono up">+20.39%</td></tr>
+            <tr><td><span class="avatar">C</span>Cash</td><td>USD</td><td class="mono">$3,196.15</td><td class="mono">2.5%</td><td class="mono">—</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- performance + dividends -->
+    <div class="perf-grid dash-block">
+      <section class="table-card">
+        <div class="table-head">
+          <h3>Performance vs. S&amp;P 500</h3>
+          <p class="tiny-note">A balanced portfolio is expected to move less than an all-stock index.</p>
+        </div>
+        <div class="table-scroll">
+          <table>
+            <thead>
+              <tr><th>Period</th><th>Portfolio</th><th>S&amp;P 500</th><th>Difference</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>1 month</td><td class="mono up">+1.9%</td><td class="mono up">+2.4%</td><td class="mono down">-0.5%</td></tr>
+              <tr><td>3 months</td><td class="mono up">+4.2%</td><td class="mono up">+5.1%</td><td class="mono down">-0.9%</td></tr>
+              <tr><td>6 months</td><td class="mono up">+7.8%</td><td class="mono up">+9.3%</td><td class="mono down">-1.5%</td></tr>
+              <tr><td>1 year</td><td class="mono up">+12.8%</td><td class="mono up">+16.4%</td><td class="mono down">-3.6%</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h3>Dividend income</h3>
+        <div class="panel-row"><span>AGG · Oct 2025</span><b class="up">+$84.12</b></div>
+        <div class="panel-row"><span>VOO · Sep 2025</span><b class="up">+$61.20</b></div>
+        <div class="panel-row"><span>MSFT · Sep 2025</span><b class="up">+$45.00</b></div>
+        <div class="panel-row"><span>AAPL · Aug 2025</span><b class="up">+$29.40</b></div>
+      </section>
+    </div>
+
+    <p class="disclaimer">Demonstration data only. Past performance does not guarantee future results. Investing involves risk, including possible loss of principal.</p>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-grid">
+      <div>
+        <a href="index.html" class="logo"><span class="logo-mark"></span>StockPie</a>
+        <p class="tiny-note">Intelligent investing for a stronger financial future.</p>
+        <p class="tiny-note">© 2025 StockPie. Demonstration experience.</p>
+      </div>
+      <div>
+        <h4>Platform</h4>
+        <a href="markets.html">Markets</a><a href="portfolio.html">Portfolio</a><a href="dashboard.html">Dashboard</a>
+      </div>
+      <div>
+        <h4>Resources</h4>
+        <a href="market-news.html">Market news</a><a href="#">Risk disclosure</a><a href="#">Privacy</a>
+      </div>
+      <div>
+        <h4>Important information</h4>
+        <p class="tiny-note">Investing involves risk, including loss of principal. All figures and content shown are illustrative.</p>
+      </div>
+    </div>
+  </footer>
+  <script src="script.js"></script>
+</body>
+</html>

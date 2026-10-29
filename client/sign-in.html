@@ -22,9 +22,9 @@
     </section>
 
     <section class="auth-form-wrap">
-      <form class="auth-form" onsubmit="return false">
+      <form class="auth-form" id="authForm" novalidate>
         <p class="eyebrow">Welcome back</p>
-        <h2>Sign in to StockPie</h2>
+        <h2 id="formTitle">Sign in to StockPie</h2>
         <p class="muted-sm">Access your demonstration investment workspace.</p>
 
         <label for="email">Email address</label>
@@ -38,14 +38,15 @@
           <a href="#" class="gold-text">Forgot password?</a>
         </div>
 
-        <button class="btn btn-gold full">Sign in</button>
+        <button type="submit" class="btn btn-gold full" id="submitBtn">Sign in</button>
         <button type="button" class="btn btn-dark full">Continue with Google</button>
 
-        <p class="switch">Don’t have an account? <a href="#" class="gold-text">Create account</a></p>
-        <p class="tiny-note center">Prototype only — authentication is not connected.</p>
+        <p class="form-message" id="formMessage" role="status"></p>
+        <p class="switch" id="switchText">Don’t have an account? <a href="#" class="gold-text" id="switchLink">Create account</a></p>
+        <p class="tiny-note center">Demo only — accounts are saved to a local JSON file.</p>
       </form>
     </section>
   </main>
-  <script src="script.js"></script>
+  <script src="auth.js"></script>
 </body>
 </html>
