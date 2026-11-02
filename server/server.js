@@ -9,7 +9,10 @@ const PORT = process.env.PORT || 3000;
 const CLIENT = path.join(__dirname, '../client');
 const USERS_FILE = path.join(__dirname, 'users.json');
 
-app.use(express.json({ limit: '10kb' }));
+app.use(express.json({ limit: '10kb' })); // Middleware is code that processes requests before they reach your route handlers.
+//The 10kb limit restricts the size of the incoming JSON request body.
+
+// Without JSON-parsing middleware, Express would not automatically parse this body into req.body.
 
 // Read registered accounts. The file contains password HASHES, not passwords.
 function getUsers() {
@@ -30,11 +33,11 @@ app.post('/api/signup', async (req, res) => {
     }
     const cleanEmail = email.trim().toLowerCase();
     const users = getUsers();
-    if (users.some(user => user.email === cleanEmail)) {
+    if (users.some(user => user.email === cleanEmail)) { // check for duplicates
       return res.status(409).json({ error: 'Email already registered.' });
     }
-    const hashedPassword = await bcrypt.hash(password, 10);
-    users.push({ email: cleanEmail, password: hashedPassword });
+    const hashedPassword = await bcrypt.hash(password, 10); // hash password with salt 10
+    users.push({ email: cleanEmail, password: hashedPassword }); // save user 
     saveUsers(users);
     res.status(201).json({ message: 'Account created.' });
   } catch (error) {
@@ -51,7 +54,7 @@ app.post('/api/signin', async (req, res) => {
       return res.status(400).json({ error: 'Enter email and password.' });
     }
     const user = getUsers().find(user => user.email === email.trim().toLowerCase());
-    if (!user || !(await bcrypt.compare(password, user.password))) {
+    if (!user || !(await bcrypt.compare(password, user.password))) { // bcrypt.compare() checks whether the entered plaintext password matches the stored bcrypt hash.
       return res.status(401).json({ error: 'Incorrect email or password.' });
     }
     res.json({ message: 'Signed in.', email: user.email });
@@ -60,6 +63,8 @@ app.post('/api/signin', async (req, res) => {
     res.status(500).json({ error: 'Server error.' });
   }
 });
+
+// backend serves HTML pages
 
 // Serve existing website and insert shared header/footer.
 app.get('/', (req, res) => res.redirect('/index.html'));
