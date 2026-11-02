@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<!-- Contact page: collect validated input, show a saved-record confirmation and answer common questions. -->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <!-- Use the device width so responsive CSS follows phone/tablet sizes rather than a desktop-sized canvas. -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Contact the StockPie team. Messages are validated in the browser and saved to a local JSON file by the Node server.">
+  <title>Contact - StockPie</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <!-- Load shared colors, typography and layout first; pages.css adds component and inner-page rules. -->
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="pages.css">
+</head>
+<!-- main.js uses this page identifier to underline the matching shared navigation link. -->
+<body data-page="contact">
+
+  <!-- The Node server replaces the following marker with server/partials/header.html; use HTTP to see it. -->
+  <!-- shared:header -->
+
+  <main class="container page">
+    <p class="eyebrow">Get in touch</p>
+    <h1 class="page-title">Talk to the team.</h1>
+    <p class="page-sub">Found a bug, or want to ask how the simulator works? Send a message using the demonstration form.</p>
+
+    <div class="contact-grid">
+      <!-- form -->
+      <section class="panel">
+        <!-- contact.js calls reportValidity and sends valid fields to /api/contact without reloading. -->
+        <form class="contact-form" id="contactForm" novalidate>
+          <div class="form-field">
+            <label for="contactName">Full name</label>
+            <input type="text" id="contactName" name="name" required minlength="2" maxlength="80" placeholder="Alex Morgan" autocomplete="name">
+
+          </div>
+
+          <div class="form-field">
+            <label for="contactEmail">Email address</label>
+            <input type="email" id="contactEmail" name="email" required maxlength="160" placeholder="alex@example.com" autocomplete="email">
+
+          </div>
+
+          <div class="form-field">
+            <label for="contactTopic">Topic</label>
+            <!-- Option values match the server topic whitelist so browser and server accept the same choices. -->
+            <select id="contactTopic" name="topic" required>
+              <option value="">Choose a topic…</option>
+              <option value="account">Account &amp; sign-in</option>
+              <option value="portfolio">Portfolio &amp; profit/loss</option>
+              <option value="data">Market data</option>
+              <option value="bug">Report a bug</option>
+              <option value="other">Something else</option>
+            </select>
+
+          </div>
+
+          <div class="form-field">
+            <label for="contactMessage">Message <span class="counter" id="messageCount">0 / 500</span></label>
+            <textarea id="contactMessage" name="message" required minlength="20" rows="6" maxlength="500"
+              placeholder="Tell us what you were trying to do and what happened…"></textarea>
+
+          </div>
+
+          <label class="check-line">
+            <input type="checkbox" id="contactConsent" required>
+            <span>I understand StockPie is a student demonstration project and no real money is involved.</span>
+          </label>
+
+          <div class="form-actions">
+            <button type="submit" class="btn btn-gold" id="contactSubmit">Send message</button>
+            <p class="form-message" id="contactStatus" role="status"></p>
+          </div>
+        </form>
+
+        <!-- success state -->
+        <!-- Initially hidden; after a successful save this replaces the form and displays the server record reference. -->
+        <div class="contact-success" id="contactSuccess" hidden>
+          <h2 tabindex="-1">Message saved.</h2>
+          <p class="muted-sm" id="contactSuccessDetail"></p>
+          <p class="tiny-note">The record was appended to <span class="mono">server/data/contact.json</span> by the Node server running on port 3000.</p>
+          <button type="button" class="btn btn-dark btn-small" id="contactAgain">Send another message</button>
+        </div>
+      </section>
+
+      <!-- sidebar -->
+      <aside class="contact-side">
+        <section class="panel">
+          <h3>Common questions</h3>
+          <div class="faq">
+            <details class="faq-item"><summary>Do I need real money to use StockPie?</summary><p>No. The prototype displays a sample portfolio and demonstration prices. No real money is used.</p></details>
+            <details class="faq-item"><summary>Is my password stored in plain text?</summary><p>No. The server stores a salted scrypt hash in <span class="mono">users.json</span>, never the password itself.</p></details>
+            <details class="faq-item"><summary>Why does the form stop working when I open the file directly?</summary><p>Because saving needs a server. Run <span class="mono">node server/server.js</span> and open <span class="mono">http://localhost:3000</span>.</p></details>
+            <details class="faq-item"><summary>Can I trade for real?</summary><p>No. StockPie is not a broker and never executes real orders.</p></details>
+          </div>
+        </section>
+      </aside>
+    </div>
+  </main>
+
+  <!-- The server inserts one shared footer here, including the newsletter form handled by main.js. -->
+  <!-- shared:footer -->
+
+  <!-- Shared helpers provide form requests, formatting, charts and dialogs; load them before page-specific code. -->
+  <script src="js/ui.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/contact.js"></script>
+</body>
+</html>

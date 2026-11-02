@@ -1,13 +1,14 @@
 /* extra styles for the inner pages (overview, markets, news, sign in) */
 
+/* Consistent content spacing for inner pages; shared typography/colors come from style.css. */
 .page { padding-top: 70px; padding-bottom: 90px; }
 .page-title { font-size: 46px; line-height: 1.1; margin-bottom: 10px; }
 .page-sub { color: var(--muted); font-size: 14px; margin-bottom: 40px; }
 .mono { font-family: 'JetBrains Mono', monospace; }
 .gold-text { color: var(--gold); }
-.spark { width: 90px; height: 30px; display: block; }
 
 /* ---------- market overview ---------- */
+/* Index cards use six columns on desktop and two columns at the 900px breakpoint. */
 .index-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 12px; margin-bottom: 14px; }
 .index-card {
   background: var(--card);
@@ -21,7 +22,6 @@
 .index-card .tiny-label { font-size: 8px; }
 .index-card em { font-style: normal; font-size: 9px; }
 .index-value { font-family: 'JetBrains Mono', monospace; font-size: 15px; }
-.index-card .spark { margin-top: 10px; }
 
 .big-chart {
   background: var(--card);
@@ -39,8 +39,10 @@
   font-size: 9px; padding: 5px 9px; border-radius: 4px; cursor: pointer;
 }
 .range-buttons button.on { background: #2a2411; color: #fff; }
+/* Keep chart coordinate math in SVG viewBox while CSS controls the displayed size. */
 .area-chart { width: 100%; height: 210px; display: block; }
 
+/* Use reusable panels for sample market information; stack them on narrow screens. */
 .panels { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
 .panel { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 20px; }
 .panel h3 { font-size: 14px; margin-bottom: 8px; padding-bottom: 12px; border-bottom: 1px solid var(--border); }
@@ -62,6 +64,7 @@
   padding: 0 16px;
   margin-bottom: 18px;
 }
+/* Highlight the whole search container when its nested input receives keyboard focus. */
 .search-box:focus-within { border-color: var(--gold); }
 .search-box input {
   flex: 1; background: none; border: none; outline: none;
@@ -75,11 +78,13 @@
   font: inherit; font-size: 10px; cursor: pointer;
 }
 .chip:hover { border-color: #555; }
+/* The on class represents selected state; page scripts move it between filter/range buttons. */
 .chip.on { background: var(--gold); border-color: var(--gold); color: #111; font-weight: 600; }
 
 .table-card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
 .table-head { padding: 22px 24px 18px; }
 .table-head h3 { font-size: 15px; margin-bottom: 4px; }
+/* Allow wide tables to scroll inside their card instead of forcing the entire page wider. */
 .table-scroll { overflow-x: auto; }
 table { width: 100%; border-collapse: collapse; font-size: 10px; }
 th {
@@ -90,7 +95,6 @@ th {
 td { text-align: right; padding: 15px 20px; border-top: 1px solid #1c1c1c; }
 th:first-child, td:first-child { text-align: left; font-weight: 500; }
 td:first-child { display: flex; align-items: center; gap: 12px; }
-td .spark { margin-left: auto; }
 .avatar {
   width: 22px; height: 22px; border-radius: 50%;
   background: #252525; display: inline-flex;
@@ -113,7 +117,6 @@ tr.hidden { display: none; }
 }
 .featured-copy h2 { font-size: 38px; max-width: 420px; line-height: 1.1; margin: 10px 0; }
 .featured-copy p:not(.tiny-label) { font-size: 12px; margin-bottom: 18px; }
-.news-chips { margin-bottom: 22px; }
 .news-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
 .news-img { position: relative; height: 180px; border-radius: 4px; margin-bottom: 14px; }
 /* placeholder gradients, replace with background-image: url(...) */
@@ -124,6 +127,7 @@ tr.hidden { display: none; }
 .news-card .muted-sm { font-size: 12px; margin-bottom: 10px; }
 
 /* ---------- sign in ---------- */
+/* The sign-in layout has a decorative introduction and a functional form; mobile collapses them. */
 .auth { display: grid; grid-template-columns: 1fr 1fr; min-height: 100vh; }
 .auth-visual {
   display: flex; flex-direction: column; justify-content: space-between;
@@ -164,12 +168,14 @@ tr.hidden { display: none; }
 }
 
 /* sign-in form feedback */
+/* Reserve a small status area and use error/ok classes to distinguish outcomes. */
 .form-message { font-size: 11px; text-align: center; min-height: 16px; margin-top: 4px; }
 .form-message.error { color: var(--red); }
 .form-message.ok { color: var(--green); }
 .btn:disabled { opacity: .6; cursor: wait; }
 
-/* ---------- dashboard ---------- */
+/* ---------- portfolio summary ---------- */
+/* Display portfolio totals in four cards; smaller screens reduce the column count. */
 .summary-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 14px; }
 .summary-grid .index-card { padding: 18px; gap: 8px; }
 .summary-grid .index-card .tiny-label { font-size: 9px; }
@@ -181,17 +187,8 @@ tr.hidden { display: none; }
 .dash-grid .big-chart { margin-bottom: 0; }
 .dash-block { margin-bottom: 14px; }
 
-.allocation .donut { width: 150px; height: 150px; display: block; margin: 14px auto 18px; }
-.donut-num { fill: #fff; font-size: 14px; font-weight: 600; }
-.donut-label { fill: #8d8d8d; font-size: 5px; }
-.alloc-list li { display: flex; justify-content: space-between; font-size: 11px; padding: 8px 0; color: #ccc; }
-.alloc-list b { font-family: 'JetBrains Mono', monospace; font-size: 10px; }
 
-.ticker { color: var(--muted); font-size: 9px; margin-left: 4px; font-family: 'JetBrains Mono', monospace; }
-.goal-top { display: flex; justify-content: space-between; font-size: 11px; margin: 16px 0 8px; }
-.goal-top.second { margin-top: 22px; }
-.progress { height: 5px; background: #262626; border-radius: 4px; margin-bottom: 8px; overflow: hidden; }
-.progress div { height: 100%; background: var(--gold); border-radius: 4px; }
+.holding-symbol { color: var(--muted); font-size: 9px; margin-left: 4px; font-family: 'JetBrains Mono', monospace; }
 
 @media (max-width: 900px) {
   .summary-grid { grid-template-columns: repeat(2, 1fr); }
@@ -210,6 +207,7 @@ tr.hidden { display: none; }
 .alloc-top small { color: var(--muted); font-size: 10px; }
 .bar-track { position: relative; height: 6px; background: #262626; border-radius: 4px; }
 .bar-fill { height: 100%; background: var(--gold); border-radius: 4px; }
+/* A vertical marker shows the chosen target, separately from the filled current-allocation bar. */
 .bar-target { position: absolute; top: -4px; width: 2px; height: 14px; background: #fff; }
 
 .strategy-panel .row { margin-bottom: 12px; }
@@ -225,3 +223,332 @@ tr.hidden { display: none; }
 @media (max-width: 900px) {
   .portfolio-top, .perf-grid { grid-template-columns: 1fr; }
 }
+
+/* =========================================================
+   Shared app chrome: navigation, toasts, dialogs, forms
+   ========================================================= */
+
+/* Make the HTML hidden attribute reliable even when another component rule sets display. */
+[hidden] { display: none !important; }
+
+
+/* Hidden on desktop; JavaScript adds the button and responsive rules reveal it on mobile. */
+.nav-toggle {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: transparent;
+  color: #ccc;
+  font-size: 16px;
+  line-height: 1;
+  cursor: pointer;
+}
+.nav-toggle:hover { color: #fff; border-color: #444; }
+
+/* ---------- table extras ---------- */
+.asset-name { font-weight: 500; }
+
+/* Watchlist buttons expose saved state visually; JavaScript also updates aria-pressed and labels. */
+.star {
+  margin-left: auto;
+  padding: 2px 4px;
+  background: none;
+  border: none;
+  color: #4a4a4a;
+  font-size: 14px;
+  line-height: 1;
+  cursor: pointer;
+}
+.star:hover { color: var(--gold-soft); }
+.star.on { color: var(--gold); }
+
+th[data-sort] { cursor: pointer; user-select: none; }
+th[data-sort]:hover { color: #ddd; }
+.sort-arrow { margin-left: 4px; font-size: 7px; color: #555; }
+th[aria-sort="ascending"] .sort-arrow,
+th[aria-sort="descending"] .sort-arrow { color: var(--gold); }
+
+.table-foot {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding: 13px 24px;
+  border-top: 1px solid var(--border);
+  font-size: 10px;
+  color: var(--muted);
+}
+
+.empty-row td {
+  text-align: center;
+  padding: 40px 20px;
+  color: var(--muted);
+  font-size: 11px;
+  display: table-cell;
+}
+
+/* ---------- dialogs ---------- */
+/* Prevent the background page from scrolling while an article or rebalance dialog is open. */
+body.dialog-open { overflow: hidden; }
+
+/* Explicit fixed inset and auto margins restore dialog centering after the global margin reset. */
+.modal {
+  position: fixed;
+  inset: 0;
+  margin: auto;
+  height: fit-content;
+  width: calc(100% - 40px);
+  max-width: 620px;
+  max-height: calc(100vh - 80px);
+  padding: 0;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: #101010;
+  color: var(--text);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.7);
+}
+/* Native dialogs provide this dimmed backdrop; it visually separates the overlay from the page. */
+.modal::backdrop { background: rgba(0, 0, 0, 0.72); backdrop-filter: blur(2px); }
+
+.modal-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 24px;
+  border-bottom: 1px solid var(--border);
+}
+.modal-head .eyebrow { margin: 0; font-size: 9px; }
+.modal-close {
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: #bbb;
+  width: 30px;
+  height: 30px;
+  font-size: 11px;
+  cursor: pointer;
+}
+.modal-close:hover { color: #fff; border-color: #555; }
+
+/* Scroll long article content inside the dialog so controls remain within the viewport. */
+.modal-body { padding: 24px; overflow-y: auto; max-height: 60vh; }
+.modal-body h2 { font-size: 26px; line-height: 1.15; margin: 8px 0 16px; }
+.modal-body h2:focus { outline: none; }
+.modal-body .btn { margin-top: 18px; }
+
+.article-body p { font-size: 13px; color: #c8c8c8; line-height: 1.7; margin-bottom: 14px; }
+
+.mini-table { margin: 16px 0; border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+
+/* ---------- generic form fields ---------- */
+.form-field { margin-bottom: 16px; }
+.form-field label {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+  font-size: 10px;
+  letter-spacing: 0.5px;
+  color: #bbb;
+  margin-bottom: 8px;
+}
+.form-field input,
+.form-field select,
+.form-field textarea {
+  width: 100%;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 13px 14px;
+  color: var(--text);
+  font: inherit;
+  font-size: 12px;
+}
+.form-field textarea { min-height: 140px; resize: vertical; line-height: 1.6; }
+.form-field select { appearance: none; cursor: pointer; }
+.form-field input:focus,
+.form-field select:focus,
+.form-field textarea:focus { outline: none; border-color: var(--gold); }
+
+.counter { font-size: 9px; color: var(--muted); letter-spacing: 0; }
+.counter.over { color: var(--red); }
+
+.check-line {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  font-size: 10px;
+  line-height: 1.6;
+  color: var(--muted);
+  margin: 4px 0 8px;
+}
+.check-line input { margin-top: 2px; accent-color: var(--gold); }
+
+.form-actions { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; margin-top: 18px; }
+
+.link-button {
+  background: none;
+  border: none;
+  padding: 0;
+  font: inherit;
+  font-size: 13px;
+  color: #cfcfcf;
+  cursor: pointer;
+  text-align: left;
+}
+.link-button:hover { color: var(--gold); }
+.link-button.gold-text { color: var(--gold); }
+.switch .link-button { font-size: 10px; }
+
+/* ---------- sign in extras ---------- */
+/* Provide a positioning context so the password reveal control sits inside the field wrapper. */
+.input-wrap { position: relative; }
+.input-wrap input { padding-right: 62px; }
+.reveal {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  color: #aaa;
+  font-size: 9px;
+  padding: 4px 8px;
+  cursor: pointer;
+}
+.reveal:hover { color: #fff; border-color: #555; }
+
+.auth-visual .tiny-note { color: #9a9a9a; font-family: 'JetBrains Mono', monospace; font-size: 10px; }
+
+/* ---------- chart grid ---------- */
+.chart-grid line { stroke: #1f1f1f; stroke-width: 1; }
+
+/* ---------- portfolio dialog table ---------- */
+.portfolio-top .rebalance { margin: 18px 0; }
+
+/* ---------- newsletter ---------- */
+.newsletter { margin-top: 12px; }
+.newsletter input {
+  width: 100%;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 10px 12px;
+  color: var(--text);
+  font: inherit;
+  font-size: 11px;
+  margin-bottom: 8px;
+}
+.newsletter input:focus { outline: none; border-color: var(--gold); }
+.newsletter .btn { width: 100%; text-align: center; }
+
+/* ---------- contact page ---------- */
+/* Separate the main form from explanatory/FAQ panels on desktop, then stack them on mobile. */
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1.25fr 0.75fr;
+  gap: 14px;
+  align-items: start;
+}
+.contact-side { display: grid; gap: 14px; }
+
+.contact-success h2 { font-size: 24px; margin-bottom: 12px; }
+.contact-success h2:focus { outline: none; }
+.contact-success .btn { margin-top: 18px; }
+
+/* Native details/summary provides the FAQ interaction without JavaScript. */
+.faq-item { border-bottom: 1px solid #1a1a1a; }
+.faq-item:last-child { border-bottom: none; }
+.faq-item summary {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding: 13px 0;
+  background: none;
+  border: none;
+  color: #ddd;
+  font: inherit;
+  font-size: 11px;
+  text-align: left;
+  cursor: pointer;
+}
+.faq-item p {
+  display: none;
+  font-size: 11px;
+  color: var(--muted);
+  line-height: 1.65;
+  padding-bottom: 14px;
+}
+.faq-item[open] p { display: block; }
+
+/* ---------- about page ---------- */
+.about-section { margin-top: 56px; }
+.about-intro { align-items: flex-start; margin-top: 8px; gap: 40px; }
+.about-intro > div:first-child { max-width: 520px; }
+.about-intro h2 { margin-bottom: 16px; }
+.about-intro .muted-sm { margin-bottom: 14px; line-height: 1.7; }
+.about-stats { min-width: 270px; }
+.disclosure-panel .muted-sm { margin-bottom: 14px; line-height: 1.7; }
+.disclosure-panel .muted-sm:last-child { margin-bottom: 0; }
+
+/* ---------- responsive ---------- */
+@media (max-width: 1080px) {
+  .navbar { padding: 14px 24px; }
+  .navbar nav { gap: 12px; font-size: 10.5px; }
+}
+
+@media (max-width: 900px) {
+  /* Keep brand left, then group the account action and menu button against the right gutter. */
+  .navbar { gap: 12px; }
+  .navbar .nav-actions { margin-left: auto; }
+  .nav-toggle { display: inline-flex; flex-shrink: 0; }
+  .navbar.open nav {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    padding: 6px 20px 14px;
+    background: #0b0b0b;
+    border-bottom: 1px solid var(--border);
+    box-shadow: 0 24px 40px rgba(0, 0, 0, 0.6);
+  }
+  .navbar.open nav a {
+    padding: 13px 0;
+    border-bottom: 1px solid #171717;
+    font-size: 13px;
+  }
+  .navbar.open nav a.active { border-bottom-color: var(--gold); }
+
+  .contact-grid { grid-template-columns: 1fr; }
+
+  .about-intro { flex-direction: column; }
+  .about-intro > div:first-child { max-width: none; }
+  .about-stats { width: 100%; }
+  .table-foot { flex-direction: column; align-items: flex-start; }
+}
+
+@media (max-width: 620px) {
+
+  .modal-body { padding: 20px; }
+  .sidebar-hidden { display: none; }
+}
+.insight-img.img-news-1 { background: linear-gradient(135deg, #333, #121212); }
+.insight-img.img-news-2 { background: linear-gradient(135deg, #4a4331, #17140d); }
+.insight-img.img-news-3 { background: linear-gradient(135deg, #263044, #10151e); }
+
+/* Keep saved watchlist and sample activity adjacent on desktop and stacked on mobile. */
+.portfolio-panels { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+@media (max-width: 900px) { .portfolio-panels { grid-template-columns: 1fr; } }
+
+/* Browser constraint validation handles invalid fields after user interaction. */
+input:user-invalid, textarea:user-invalid, select:user-invalid { border-color: var(--red); }

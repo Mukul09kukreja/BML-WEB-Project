@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<!-- About page: explain the passive-fund model, compare sample strategies and explain the risk disclosure. -->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <!-- Use the device width so responsive CSS follows phone/tablet sizes rather than a desktop-sized canvas. -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="About StockPie - a risk-free stock market simulator built around passive index-fund strategies.">
+  <title>About - StockPie</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <!-- Load shared colors, typography and layout first; pages.css adds component and inner-page rules. -->
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="pages.css">
+</head>
+<!-- main.js uses this page identifier to underline the matching shared navigation link. -->
+<body data-page="about">
+
+  <!-- The Node server replaces the following marker with server/partials/header.html; use HTTP to see it. -->
+  <!-- shared:header -->
+
+  <main class="container page">
+    <p class="eyebrow">About the project</p>
+    <h1 class="page-title">Passive investing, without the risk.</h1>
+    <p class="page-sub">StockPie is a student-built market simulator. Explore sample fund allocations and portfolio performance without using real money. Simulated order execution is planned for the next phase.</p>
+
+    <!-- mission -->
+    <section class="split-head about-intro">
+      <div>
+        <h2>Why we built it</h2>
+        <p class="muted-sm">Most first-time investors learn about markets through losses. We wanted a place to learn the other way around: understand diversification, see the effect of fees, watch a portfolio drift away from its target allocation — and fix it — before any real money is involved.</p>
+        <p class="muted-sm">The product is deliberately centred on passive funds. Instead of picking stocks to beat the index, you choose a strategy, allocate across asset classes and then monitor how the portfolio behaves.</p>
+      </div>
+      <div class="panel about-stats">
+        <div class="panel-row"><span>Planned starting capital</span><b class="mono">$100,000</b></div>
+        <div class="panel-row"><span>Asset classes</span><b class="mono">6</b></div>
+        <div class="panel-row"><span>Strategies</span><b class="mono">3</b></div>
+        <div class="panel-row"><span>Real money at risk</span><b class="mono up">$0.00</b></div>
+      </div>
+    </section>
+
+    <!-- how it works -->
+    <section id="how-it-works" class="about-section">
+      <p class="eyebrow">How it works</p>
+      <h2>Three steps, one habit.</h2>
+      <div class="panels">
+        <article class="panel">
+          <span class="feature-num">01</span>
+          <h3>Pick a strategy</h3>
+          <p class="muted-sm">Conservative, Balanced or Growth. Each one defines a target mix of equities, bonds and gold before you buy anything.</p>
+        </article>
+        <article class="panel">
+          <span class="feature-num">02</span>
+          <h3>Allocate with funds</h3>
+          <p class="muted-sm">Buy broad index funds rather than single companies. Your portfolio value comes from the funds you hold, not from timing the market.</p>
+        </article>
+        <article class="panel">
+          <span class="feature-num">03</span>
+          <h3>Track and rebalance</h3>
+          <p class="muted-sm">Watch profit and loss, notice drift from your target weights, and rebalance back on purpose instead of on impulse.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- strategies -->
+    <section id="strategies" class="about-section">
+      <p class="eyebrow">The three strategies</p>
+      <h2>Same markets, different risk.</h2>
+      <div class="table-card">
+        <div class="table-head">
+          <h3>Strategy comparison</h3>
+          <p class="tiny-note">Illustrative allocations, not advice</p>
+        </div>
+        <div class="table-scroll">
+          <table>
+            <thead>
+              <tr><th>Strategy</th><th>Equity</th><th>Bonds</th><th>Gold / cash</th><th>Horizon</th><th>Volatility</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><span class="avatar">C</span>Conservative</td><td class="mono">35%</td><td class="mono">55%</td><td class="mono">10%</td><td class="mono">3-5 yrs</td><td class="mono">Low</td></tr>
+              <tr><td><span class="avatar">B</span>Balanced</td><td class="mono">60%</td><td class="mono">30%</td><td class="mono">10%</td><td class="mono">5-10 yrs</td><td class="mono">Medium</td></tr>
+              <tr><td><span class="avatar">G</span>Growth</td><td class="mono">85%</td><td class="mono">10%</td><td class="mono">5%</td><td class="mono">10+ yrs</td><td class="mono">High</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- disclosure -->
+    <section id="disclosure" class="about-section">
+      <p class="eyebrow">Risk disclosure</p>
+      <h2>What this site is not.</h2>
+      <div class="panel disclosure-panel">
+        <p class="muted-sm">StockPie is an academic project. It is not a broker, it does not hold client money and it does not execute real orders.</p>
+        <p class="muted-sm">All prices, indices, news items and portfolio figures on this site are simulated demonstration data. Nothing here is investment advice, and no projection shown by the calculator is a promise of future returns.</p>
+        <p class="muted-sm">Investing in real markets involves risk, including the possible loss of the money you invest. Past performance does not guarantee future results.</p>
+      </div>
+    </section>
+
+    <p class="disclaimer">Questions about the build? <a href="contact.html" class="gold-text">Send us a message</a> — it is saved to a local JSON file.</p>
+  </main>
+
+  <!-- The server inserts one shared footer here, including the newsletter form handled by main.js. -->
+  <!-- shared:footer -->
+
+  <!-- Shared helpers provide form requests, formatting, charts and dialogs; load them before page-specific code. -->
+  <script src="js/ui.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
