@@ -2,9 +2,9 @@
 
 | Phase            |  Weight | Main Focus     | What You Need to Show                                                            |
 | ---------------- | ------: | -------------- | -------------------------------------------------------------------------------- |
-| **A1 – Phase 1** | **30%** | **HTML + CSS** | Figma design, well-structured HTML, strong CSS, responsive & accessible UI       |
-| **A2 – Phase 2** | **30%** | **JavaScript** | JS fundamentals, DOM manipulation, event handling, and integration with HTML/CSS |
-| **A3 – Final**   | **40%** | **Full Stack** | Frontend ↔ Backend flow, Node.js, Express, EJS/static files, MongoDB + Mongoose  |
+| **A1 - Phase 1** | **30%** | **HTML + CSS** | Figma design, well-structured HTML, strong CSS, responsive & accessible UI       |
+| **A2 - Phase 2** | **30%** | **JavaScript** | JS fundamentals, DOM manipulation, event handling, and integration with HTML/CSS |
+| **A3 - Final**   | **40%** | **Full Stack** | Frontend ↔ Backend flow, Node.js, Express, EJS/static files, MongoDB + Mongoose  |
 
 ### A1 — Build the Foundation
 
