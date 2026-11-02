@@ -1,0 +1,33 @@
+<!-- Shared footer inserted by server.js. Links and the newsletter form stay identical across content pages. -->
+<footer class="footer">
+    <div class="container footer-grid">
+      <div>
+        <a href="index.html" class="logo"><span class="logo-mark"></span>StockPie</a>
+        <p class="tiny-note">Intelligent investing for a stronger financial future.</p>
+        <p class="tiny-note">© 2026 StockPie. Demonstration experience.</p>
+      </div>
+      <div>
+        <h4>Platform</h4>
+        <a href="markets.html">Markets</a>
+        <a href="portfolio.html">Portfolio</a>
+
+      </div>
+      <div>
+        <h4>Resources</h4>
+        <a href="market-news.html">Market news</a>
+        <a href="about.html">About us</a>
+        <a href="contact.html">Contact</a>
+        <a href="about.html#disclosure">Risk disclosure</a>
+      </div>
+      <div>
+        <h4>Market notes</h4>
+        <p class="tiny-note">Try the newsletter form. Subscriptions are saved locally; no email is sent.</p>
+        <!-- Browser validation checks email and posts to /api/subscribe; no email delivery service is connected. -->
+        <form class="newsletter js-newsletter" novalidate>
+          <input type="email" name="email" placeholder="you@example.com" aria-label="Email address" required>
+          <button class="btn btn-gold btn-small" type="submit">Join</button>
+          <p class="form-message" data-error role="status"></p>
+        </form>
+      </div>
+    </div>
+  </footer>

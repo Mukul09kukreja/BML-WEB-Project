@@ -1,34 +1,25 @@
 <!DOCTYPE html>
+<!-- Landing page: introduce the simulator, preview markets/news and demonstrate a live wealth calculator. -->
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <!-- Use the device width so responsive CSS follows phone/tablet sizes rather than a desktop-sized canvas. -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>StockPie – Smart passive investing</title>
+  <meta name="description" content="StockPie - a risk-free stock market simulator built around passive index-fund strategies.">
+  <title>StockPie - Smart passive investing</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <!-- Load shared colors, typography and layout first; pages.css adds component and inner-page rules. -->
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="pages.css">
 </head>
-<body>
+<!-- main.js uses this page identifier to underline the matching shared navigation link. -->
+<body data-page="index">
 
   <!-- NAVBAR -->
-  <header class="navbar">
-    <a href="#" class="logo"><span class="logo-mark"></span>StockPie</a>
-    <nav>
-      <a href="#" class="active">Home</a>
-      <a href="market-overview.html">Market Overview</a>
-      <a href="markets.html">Markets</a>
-      <a href="market-news.html">Market News</a>
-      <a href="Portfolio.html">Portfolio</a>
-      <a href="Dashboard.html">Dashboard</a>
-    </nav>
-    <div class="nav-actions">
-      <button class="icon-btn" aria-label="Search">&#9906;</button>
-      <button class="icon-btn" aria-label="Notifications">&#9832;</button>
-      <a href="sign-in.html" class="sign-in">Sign in</a>
-      <a href="sign-in.html" class="btn btn-gold btn-small">Get started</a>
-    </div>
-  </header>
+  <!-- The Node server replaces the following marker with server/partials/header.html; use HTTP to see it. -->
+  <!-- shared:header -->
 
   <!-- HERO -->
   <section class="hero">
@@ -38,8 +29,8 @@
         <h1>Your <span class="gold">Wealth.</span><br>Your Strategy.<br>Your Future.</h1>
         <p class="hero-sub">Take control of your financial future with intelligent passive investment strategies, powerful market insights, and effortless portfolio management.</p>
         <div class="hero-buttons">
-          <a href="#" class="btn btn-gold">Start investing &rarr;</a>
-          <a href="#" class="btn btn-dark">Explore markets</a>
+          <a href="sign-in.html?mode=signup" class="btn btn-gold">Start investing &rarr;</a>
+          <a href="markets.html" class="btn btn-dark">Explore markets</a>
         </div>
         <ul class="hero-checks">
           <li>Diversified investing</li>
@@ -48,15 +39,16 @@
         </ul>
       </div>
 
-      <div class="demo-card">
+      <!-- Hidden until main.js confirms a signed-in browser identity; prevents a guest flash. -->
+      <div class="demo-card" data-signed-in hidden>
         <div class="demo-top">
           <span class="tiny-label">Demo portfolio</span>
-          <span class="live-tag">Live preview</span>
+          <span class="live-tag">Sample portfolio</span>
         </div>
         <p class="demo-label">Portfolio value</p>
-        <p class="demo-value">$128,450.75</p>
-        <p class="demo-change">+$18,450.75 <span class="badge-green">+16.77%</span></p>
-        <svg class="demo-chart" viewBox="0 0 300 90" preserveAspectRatio="none">
+        <p class="demo-value" id="demoValue" data-portfolio="value">$128,450.75</p>
+        <p class="demo-change"><span data-portfolio="gain"></span> <span class="badge-green" data-portfolio="returnPct"></span></p>
+        <svg class="demo-chart" viewBox="0 0 300 90" preserveAspectRatio="none" aria-hidden="true">
           <defs>
             <linearGradient id="heroFill" x1="0" y1="0" x2="0" y2="1">
               <stop offset="0" stop-color="#d4af37" stop-opacity=".35"/>
@@ -67,21 +59,16 @@
           <path d="M0 80 L30 62 L50 66 L80 40 L105 48 L135 30 L165 42 L200 22 L235 30 L265 12 L300 8" fill="none" stroke="#d4af37" stroke-width="2"/>
         </svg>
         <div class="legend">
-          <span><i class="dot gold-dot"></i>Equities<b>62%</b></span>
+          <span><i class="dot gold-dot"></i>Equities<b>58%</b></span>
           <span><i class="dot grey-dot"></i>Bonds<b>24%</b></span>
-          <span><i class="dot dark-dot"></i>Alternatives<b>14%</b></span>
+          <span><i class="dot dark-dot"></i>Gold / cash<b>18%</b></span>
         </div>
       </div>
     </div>
 
-    <!-- market ticker -->
-    <div class="ticker">
-      <div class="tick"><div><span>S&amp;P 500</span><strong>5,842.91</strong><em class="up">+0.74%</em></div></div>
-      <div class="tick"><div><span>NASDAQ</span><strong>18,712.75</strong><em class="up">+1.12%</em></div></div>
-      <div class="tick"><div><span>DOW JONES</span><strong>42,387.57</strong><em class="down">-0.21%</em></div></div>
-      <div class="tick"><div><span>NIFTY 50</span><strong>24,854.30</strong><em class="up">+0.42%</em></div></div>
-      <div class="tick"><div><span>SENSEX</span><strong>81,361.87</strong><em class="up">+0.36%</em></div></div>
-    </div>
+    <!-- market ticker: rendered by js/home.js from js/data.js -->
+    <!-- home.js inserts index values here using the shared data catalog. -->
+    <div class="ticker" id="ticker" aria-label="Market indices"></div>
   </section>
 
   <!-- WHY STOCKPIE -->
@@ -99,79 +86,47 @@
           <div class="feature-icon">&#9638;</div>
           <h3>Smart diversification</h3>
           <p>Build resilient portfolios with research-led allocations across global assets.</p>
-          <a href="#" class="link-small">Learn more &rarr;</a>
+          <a href="about.html#strategies" class="link-small">Learn more &rarr;</a>
         </article>
         <article class="feature">
           <span class="feature-num">02</span>
           <div class="feature-icon">&#9617;</div>
           <h3>Long-term wealth building</h3>
           <p>Stay focused on your goals with disciplined, passive investment strategies.</p>
-          <a href="#" class="link-small">Learn more &rarr;</a>
+          <a href="about.html#strategies" class="link-small">Learn more &rarr;</a>
         </article>
         <article class="feature">
           <span class="feature-num">03</span>
           <div class="feature-icon">&#9678;</div>
           <h3>Market intelligence</h3>
           <p>Cut through the noise with clear, contextual insights across global markets.</p>
-          <a href="#" class="link-small">Learn more &rarr;</a>
+          <a href="market-overview.html" class="link-small">Learn more &rarr;</a>
         </article>
         <article class="feature">
           <span class="feature-num">04</span>
           <div class="feature-icon">&#9711;</div>
           <h3>Effortless tracking</h3>
           <p>Understand every movement with a unified, transparent portfolio view.</p>
-          <a href="#" class="link-small">Learn more &rarr;</a>
+          <a href="portfolio.html" class="link-small">Learn more &rarr;</a>
         </article>
       </div>
     </div>
   </section>
 
-  <!-- STRATEGIES -->
   <section class="section section-alt">
     <div class="container">
-      <p class="eyebrow">Built for your ambition</p>
-      <h2>Strategies designed<br>around your goals.</h2>
-
-      <div class="strategies">
-        <article class="strategy">
-          <p class="tiny-label">Strategy 01</p>
-          <h3>Conservative</h3>
-          <p class="muted-sm">Lower volatility</p>
-          <div class="row"><span>Risk level</span><div class="bars"><i class="on"></i><i class="on"></i><i></i><i></i><i></i></div></div>
-          <div class="row"><span>Example allocation</span><span class="alloc">35% Equity · 55% Bonds · 10% Cash</span></div>
-          <div class="row"><span>Investment horizon</span><span>3–5 years</span></div>
-          <a href="#" class="btn btn-outline">Explore strategy &rarr;</a>
-        </article>
-
-        <article class="strategy featured">
-          <span class="popular">Most popular</span>
-          <p class="tiny-label">Strategy 02</p>
-          <h3>Balanced</h3>
-          <p class="muted-sm">Growth &amp; stability</p>
-          <div class="row"><span>Risk level</span><div class="bars"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></div></div>
-          <div class="row"><span>Example allocation</span><span class="alloc">60% Equity · 30% Bonds · 10% Gold</span></div>
-          <div class="row"><span>Investment horizon</span><span>5–10 years</span></div>
-          <a href="#" class="btn btn-outline">Explore strategy &rarr;</a>
-        </article>
-
-        <article class="strategy">
-          <p class="tiny-label">Strategy 03</p>
-          <h3>Growth</h3>
-          <p class="muted-sm">Long-term growth</p>
-          <div class="row"><span>Risk level</span><div class="bars"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></div></div>
-          <div class="row"><span>Example allocation</span><span class="alloc">85% Equity · 10% Bonds · 5% Cash</span></div>
-          <div class="row"><span>Investment horizon</span><span>10+ years</span></div>
-          <a href="#" class="btn btn-outline">Explore strategy &rarr;</a>
-        </article>
-      </div>
-      <p class="disclaimer">Illustrative strategies only. All investing involves risk, including possible loss of principal.</p>
+      <p class="eyebrow">Passive fund strategies</p>
+      <h2>Choose a mix that fits your goals.</h2>
+      <p class="muted-sm">Compare Conservative, Balanced and Growth allocations before exploring the sample portfolio.</p>
+      <a href="about.html#strategies" class="btn btn-outline">Compare strategies &rarr;</a>
     </div>
   </section>
 
   <!-- CALCULATOR -->
   <section class="section">
     <div class="container calc">
-      <div class="calc-left">
+      <!-- This div groups calculator controls; input events recalculate immediately and Save persists them locally. -->
+      <div class="calc-left" id="calcForm">
         <p class="eyebrow">Wealth calculator</p>
         <h2>See what consistency can <span class="gold">build.</span></h2>
         <p class="muted-sm">Small, disciplined contributions can compound into meaningful progress over time.</p>
@@ -184,26 +139,34 @@
           <label for="monthly"><span>Monthly contribution</span><strong id="monthlyOut">$500</strong></label>
           <input type="range" id="monthly" min="0" max="5000" step="50" value="500">
         </div>
+        <div class="slider-block">
+          <label for="years"><span>Years invested</span><strong id="yearsOut">10 years</strong></label>
+          <input type="range" id="years" min="1" max="30" step="1" value="10">
+        </div>
+        <p class="tiny-note">Use “Save this plan” to remember your inputs in this browser.</p>
       </div>
 
       <div class="calc-card">
         <p class="muted-sm">Estimated portfolio value</p>
         <p class="calc-value" id="finalValue">$102,900</p>
-        <p class="tiny-note">After 10 years · 7% assumed annual return</p>
-        <svg class="calc-chart" viewBox="0 0 400 130" preserveAspectRatio="none">
+        <p class="tiny-note" id="calcNote">After 10 years · 7% assumed annual return</p>
+        <!-- calculator.js replaces the line/area paths with values computed from the slider inputs. -->
+        <svg class="calc-chart" id="calcChart" viewBox="0 0 400 130" preserveAspectRatio="none" aria-hidden="true">
           <defs>
             <linearGradient id="calcFill" x1="0" y1="0" x2="0" y2="1">
               <stop offset="0" stop-color="#d4af37" stop-opacity=".3"/>
               <stop offset="1" stop-color="#d4af37" stop-opacity="0"/>
             </linearGradient>
           </defs>
-          <path d="M0 110 L40 95 L70 100 L110 72 L150 80 L190 60 L230 66 L270 42 L310 50 L350 22 L400 12 L400 130 L0 130Z" fill="url(#calcFill)"/>
-          <path d="M0 110 L40 95 L70 100 L110 72 L150 80 L190 60 L230 66 L270 42 L310 50 L350 22 L400 12" fill="none" stroke="#d4af37" stroke-width="2"/>
+          <path class="chart-area" fill="url(#calcFill)" d=""/>
+          <path class="chart-line" fill="none" stroke="#d4af37" stroke-width="2" d=""/>
         </svg>
         <div class="calc-totals">
           <div><span>Total invested</span><strong id="invested">$70,000</strong></div>
           <div><span>Est. growth</span><strong class="gold" id="growth">$32,900</strong></div>
         </div>
+        <button type="button" class="btn btn-dark full" id="savePlan">Save this plan</button>
+        <p id="planStatus" class="tiny-note" role="status"></p>
         <p class="tiny-note">Hypothetical projection. Does not guarantee future performance.</p>
       </div>
     </div>
@@ -215,32 +178,12 @@
       <p class="eyebrow">Market intelligence</p>
       <div class="split-head">
         <h2>Insights that move<br>you forward.</h2>
-        <a href="#" class="btn btn-dark">View all insights</a>
+        <a href="market-news.html" class="btn btn-dark">View all insights</a>
       </div>
 
-      <div class="insights">
-        <article class="insight">
-          <div class="insight-img img-one"><span class="tag">Global markets</span></div>
-          <p class="tiny-note">Demonstration insight · Oct 18, 2025</p>
-          <h3>Building resilient portfolios in a changing rate environment</h3>
-          <p class="muted-sm">Clear context and durable principles for thoughtful long-term investors.</p>
-          <a href="#" class="link-small">Read insight &rarr;</a>
-        </article>
-        <article class="insight">
-          <div class="insight-img img-two"><span class="tag">Investing</span></div>
-          <p class="tiny-note">Demonstration insight · Oct 17, 2025</p>
-          <h3>Why quality matters when markets feel uncertain</h3>
-          <p class="muted-sm">Clear context and durable principles for thoughtful long-term investors.</p>
-          <a href="#" class="link-small">Read insight &rarr;</a>
-        </article>
-        <article class="insight">
-          <div class="insight-img img-three"><span class="tag">Perspective</span></div>
-          <p class="tiny-note">Demonstration insight · Oct 16, 2025</p>
-          <h3>The quiet power of staying invested</h3>
-          <p class="muted-sm">Clear context and durable principles for thoughtful long-term investors.</p>
-          <a href="#" class="link-small">Read insight &rarr;</a>
-        </article>
-      </div>
+      <!-- rendered by js/home.js -->
+      <!-- home.js previews three news records and links each one to the matching article dialog. -->
+      <div class="insights" id="homeInsights"></div>
     </div>
   </section>
 
@@ -249,65 +192,20 @@
     <p class="eyebrow">Your next chapter</p>
     <h2>The future of your wealth<br>starts <span class="gold">here.</span></h2>
     <p class="muted-sm">Build a stronger financial future with StockPie.</p>
-    <a href="#" class="btn btn-gold">Create your account &rarr;</a>
+    <a href="sign-in.html?mode=signup" class="btn btn-gold">Create your account &rarr;</a>
   </section>
 
   <!-- FOOTER -->
-  <footer class="footer">
-    <div class="container footer-grid">
-      <div>
-        <a href="#" class="logo"><span class="logo-mark"></span>StockPie</a>
-        <p class="tiny-note">Intelligent investing for a stronger financial future.</p>
-        <p class="tiny-note">© 2025 StockPie. Demonstration experience.</p>
-      </div>
-      <div>
-        <h4>Platform</h4>
-        <a href="#">Markets</a><a href="#">Portfolio</a><a href="#">Dashboard</a>
-      </div>
-      <div>
-        <h4>Resources</h4>
-        <a href="#">Market news</a><a href="#">Risk disclosure</a><a href="#">Privacy</a>
-      </div>
-      <div>
-        <h4>Important information</h4>
-        <p class="tiny-note">Investing involves risk, including loss of principal. All figures and content shown are illustrative.</p>
-      </div>
-    </div>
-  </footer>
+  <!-- The server inserts one shared footer here, including the newsletter form handled by main.js. -->
+  <!-- shared:footer -->
 
-  <script>
-    // wealth calculator – contributions added once a year, 7% return
-    const initial = document.getElementById('initial');
-    const monthly = document.getElementById('monthly');
-    const RATE = 0.07;
-    const YEARS = 10;
-
-    const money = n => '$' + Math.round(n).toLocaleString('en-US');
-
-    function update() {
-      const start = Number(initial.value);
-      const perYear = Number(monthly.value) * 12;
-
-      const growthFactor = Math.pow(1 + RATE, YEARS);
-      const final = start * growthFactor + perYear * ((growthFactor - 1) / RATE);
-      const invested = start + perYear * YEARS;
-
-      document.getElementById('initialOut').textContent = money(start);
-      document.getElementById('monthlyOut').textContent = money(monthly.value);
-      document.getElementById('finalValue').textContent = money(final);
-      document.getElementById('invested').textContent = money(invested);
-      document.getElementById('growth').textContent = money(final - invested);
-
-      // fill the slider track up to the thumb
-      [initial, monthly].forEach(s => {
-        const pct = (s.value - s.min) / (s.max - s.min) * 100;
-        s.style.setProperty('--fill', pct + '%');
-      });
-    }
-
-    initial.addEventListener('input', update);
-    monthly.addEventListener('input', update);
-    update();
-  </script>
+  <!-- Load order matters: shared catalog, UI and storage must be available before the page controller runs. -->
+  <script src="js/data.js"></script>
+  <!-- Shared helpers provide form requests, formatting, charts and dialogs; load them before page-specific code. -->
+  <script src="js/ui.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/home.js"></script>
+  <script src="js/calculator.js"></script>
 </body>
 </html>

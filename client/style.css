@@ -1,4 +1,5 @@
 /* ---------- basics ---------- */
+/* Design tokens: change these CSS variables to update the shared theme without editing each component. */
 :root {
   --bg: #0a0a0a;
   --bg-alt: #0d0d0d;
@@ -12,6 +13,7 @@
   --red: #e5484d;
 }
 
+/* Reset browser spacing and include padding/borders in declared dimensions; component spacing is added below. */
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
@@ -24,6 +26,7 @@ body {
 a { color: inherit; text-decoration: none; }
 ul { list-style: none; }
 
+/* Center the content with a maximum width and side gutters that keep text away from viewport edges. */
 .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
 .gold { color: var(--gold-soft); }
 
@@ -48,6 +51,7 @@ h3 { font-size: 17px; font-weight: 500; letter-spacing: -0.01em; }
 .section-alt { background: var(--bg-alt); }
 
 /* ---------- buttons ---------- */
+/* Base button/link appearance; modifier classes such as btn-gold and btn-small change color or size. */
 .btn {
   display: inline-block;
   padding: 13px 24px;
@@ -70,6 +74,7 @@ h3 { font-size: 17px; font-weight: 500; letter-spacing: -0.01em; }
 .link-small:hover { color: var(--gold); }
 
 /* ---------- navbar ---------- */
+/* Keep navigation visible while scrolling; its mobile menu rules are in pages.css. */
 .navbar {
   display: flex;
   align-items: center;
@@ -88,20 +93,11 @@ h3 { font-size: 17px; font-weight: 500; letter-spacing: -0.01em; }
   border: 2px solid var(--gold);
   background: conic-gradient(var(--gold) 0 70%, transparent 70%);
 }
-.navbar nav { display: flex; gap: 28px; font-size: 12px; color: #bdbdbd; }
+.navbar nav { display: flex; gap: 18px; font-size: 11px; color: #bdbdbd; }
 .navbar nav a { padding: 6px 0; }
 .navbar nav a.active { color: #fff; border-bottom: 2px solid var(--gold); }
 .navbar nav a:hover { color: #fff; }
 .nav-actions { display: flex; align-items: center; gap: 14px; }
-.icon-btn {
-  width: 34px; height: 34px;
-  border-radius: 50%;
-  border: 1px solid var(--border);
-  background: transparent;
-  color: #ccc;
-  cursor: pointer;
-}
-.sign-in { font-size: 13px; font-weight: 500; }
 
 /* ---------- hero ---------- */
 .hero {
@@ -111,6 +107,7 @@ h3 { font-size: 17px; font-weight: 500; letter-spacing: -0.01em; }
     linear-gradient(180deg, #1b2230 0%, #0a0a0a 100%);
   position: relative;
 }
+/* Place introduction and sample portfolio side by side on wide screens; stack them at the breakpoint. */
 .hero-inner {
   display: flex;
   align-items: center;
@@ -143,6 +140,7 @@ h3 { font-size: 17px; font-weight: 500; letter-spacing: -0.01em; }
 .demo-value, .calc-value { font-family: 'JetBrains Mono', monospace; font-weight: 600; font-size: 32px; }
 .demo-change { font-size: 11px; color: var(--muted); }
 .badge-green { background: #14391f; color: var(--green); padding: 2px 6px; border-radius: 3px; margin-left: 4px; }
+/* SVG paths use a fixed coordinate system while CSS stretches the preview to the card width. */
 .demo-chart { width: 100%; height: 90px; margin: 14px 0; }
 .legend { display: flex; gap: 18px; font-size: 10px; color: var(--muted); }
 .legend span { display: flex; flex-direction: column; gap: 2px; }
@@ -153,6 +151,7 @@ h3 { font-size: 17px; font-weight: 500; letter-spacing: -0.01em; }
 .dark-dot { background: #444; }
 
 /* ticker strip under hero */
+/* This class is only the market strip; portfolio symbol labels use holding-symbol to avoid collisions. */
 .ticker { display: flex; border-top: 1px solid #1e1e1e; background: rgba(8, 8, 8, 0.9); }
 .tick { flex: 1; padding: 16px 24px; border-right: 1px solid #1e1e1e; }
 .tick span { display: block; font-size: 9px; color: var(--muted); letter-spacing: 0.5px; }
@@ -163,6 +162,7 @@ h3 { font-size: 17px; font-weight: 500; letter-spacing: -0.01em; }
 
 /* ---------- why stockpie ---------- */
 .split-head { display: flex; justify-content: space-between; align-items: center; gap: 40px; }
+/* A CSS grid arranges feature cards without hard-coding individual positions. */
 .features {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -176,39 +176,28 @@ h3 { font-size: 17px; font-weight: 500; letter-spacing: -0.01em; }
 .feature h3 { margin-bottom: 8px; }
 .feature p { font-size: 12px; color: var(--muted); margin-bottom: 14px; }
 
-/* ---------- strategies ---------- */
-.strategies { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 50px; }
-.strategy {
-  position: relative;
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  padding: 26px;
-}
-.strategy.featured { border-color: #4a3d12; background: #15130c; }
-.popular { position: absolute; top: 14px; right: 18px; font-size: 9px; color: var(--gold); font-weight: 600; }
-.strategy h3 { font-size: 18px; margin-top: 14px; }
-.strategy .muted-sm { margin-bottom: 28px; font-size: 12px; }
+/* ---------- allocation rows ---------- */
 .row {
   display: flex; justify-content: space-between; align-items: center;
   font-size: 11px; color: var(--muted);
   margin-bottom: 22px;
 }
 .row span:last-child { color: #ddd; }
-.alloc { text-align: right; max-width: 190px; }
+/* Small visual risk indicators; the on class fills selected segments with the accent color. */
 .bars { display: flex; gap: 4px; }
 .bars i { width: 16px; height: 3px; background: #333; border-radius: 2px; }
 .bars i.on { background: var(--gold); }
-.strategy .btn { margin-top: 12px; }
 .disclaimer { text-align: center; font-size: 10px; color: #555; margin-top: 30px; }
 
 /* ---------- calculator ---------- */
+/* Two columns keep slider controls and projected results together until the layout becomes narrow. */
 .calc { display: grid; grid-template-columns: 1fr 1.5fr; gap: 60px; align-items: center; }
 .calc h2 { margin-bottom: 14px; }
 .slider-block { margin-top: 34px; }
 .slider-block label { display: flex; justify-content: space-between; font-size: 12px; margin-bottom: 14px; }
 .slider-block strong { font-family: 'JetBrains Mono', monospace; }
 
+/* Range controls use a custom filled track; calculator.js sets the --fill percentage. */
 input[type="range"] {
   -webkit-appearance: none;
   appearance: none;
@@ -244,16 +233,14 @@ input[type="range"]:focus-visible { outline: 2px solid var(--gold); outline-offs
 
 /* ---------- insights ---------- */
 .insights { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 50px; }
+/* Gradient placeholders provide visual cards without depending on external image downloads. */
 .insight-img {
   position: relative;
   height: 210px;
   border-radius: 4px;
   margin-bottom: 16px;
 }
-/* stand-ins for the photos – swap with background-image: url(...) */
-.img-one   { background: linear-gradient(160deg, #3b4a5c, #1a1f27 70%); }
-.img-two   { background: linear-gradient(160deg, #4a3d22, #17140d 70%); }
-.img-three { background: linear-gradient(160deg, #596068, #1d2024 70%); }
+/* stand-ins for the photos - swap with background-image: url(...) */
 .tag {
   position: absolute; left: 12px; bottom: 12px;
   font-size: 8px; letter-spacing: 1px; text-transform: uppercase;
@@ -274,6 +261,7 @@ input[type="range"]:focus-visible { outline: 2px solid var(--gold); outline-offs
 
 /* ---------- footer ---------- */
 .footer { border-top: 1px solid #1a1a1a; padding: 50px 0 40px; }
+/* Arrange brand, platform links, resources and subscription form; mobile rules stack the columns. */
 .footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1.4fr; gap: 40px; }
 .footer .logo { margin-bottom: 12px; }
 .footer p { margin-bottom: 6px; }
@@ -282,6 +270,7 @@ input[type="range"]:focus-visible { outline: 2px solid var(--gold); outline-offs
 .footer-grid a:not(.logo):hover { color: #fff; }
 
 /* ---------- responsive ---------- */
+/* Responsive rules apply only when the viewport is narrow; they override the desktop defaults above. */
 @media (max-width: 900px) {
   .navbar nav { display: none; }
   .navbar { padding: 14px 20px; }
@@ -290,7 +279,7 @@ input[type="range"]:focus-visible { outline: 2px solid var(--gold); outline-offs
   .demo-card { width: 100%; }
   .ticker { overflow-x: auto; }
   .tick { min-width: 180px; }
-  .features, .strategies, .insights, .calc, .footer-grid { grid-template-columns: 1fr; }
+  .features, .insights, .calc, .footer-grid { grid-template-columns: 1fr; }
   .feature { border-right: none; border-bottom: 1px solid var(--border); }
   .split-head { flex-direction: column; align-items: flex-start; }
   h2 { font-size: 34px; }
