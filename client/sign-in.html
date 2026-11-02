@@ -1,16 +1,21 @@
 <!DOCTYPE html>
+<!-- Account page: reuse a single form for sign-in and sign-up; successful sign-in opens Portfolio. -->
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <!-- Use the device width so responsive CSS follows phone/tablet sizes rather than a desktop-sized canvas. -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Sign in – StockPie</title>
+  <meta name="description" content="Sign in to your StockPie demo account, or create one in seconds.">
+  <title>Sign in - StockPie</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <!-- Load shared colors, typography and layout first; pages.css adds component and inner-page rules. -->
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="pages.css">
 </head>
-<body>
+<!-- main.js uses this page identifier to underline the matching shared navigation link. -->
+<body data-page="sign-in">
   <main class="auth">
     <section class="auth-visual">
       <a href="index.html" class="logo auth-logo"><span class="logo-mark"></span>StockPie</a>
@@ -19,34 +24,44 @@
         <h1>Your financial future begins here.</h1>
         <p class="auth-sub">Clear insights. Disciplined strategy. One intelligent platform.</p>
       </div>
+      <p class="tiny-note">Create a demonstration account using the form. No real money is involved.</p>
     </section>
 
     <section class="auth-form-wrap">
+      <!-- novalidate lets the submit handler call reportValidity before sending the form with fetch. -->
       <form class="auth-form" id="authForm" novalidate>
         <p class="eyebrow">Welcome back</p>
         <h2 id="formTitle">Sign in to StockPie</h2>
         <p class="muted-sm">Access your demonstration investment workspace.</p>
 
         <label for="email">Email address</label>
-        <input type="email" id="email" placeholder="alex@example.com">
+        <!-- type=email and required let the browser report invalid or missing email values. -->
+        <input type="email" id="email" name="email" placeholder="alex@example.com" autocomplete="email" maxlength="160" required>
 
         <label for="password">Password</label>
-        <input type="password" id="password" placeholder="••••••••">
+        <!-- The Show button changes the password input type; the value is never placed in localStorage. -->
+        <div class="input-wrap">
+          <input type="password" id="password" name="password" placeholder="••••••••" autocomplete="current-password" minlength="8" maxlength="200" required>
+          <button type="button" class="reveal" id="revealPassword" aria-label="Show password">Show</button>
+        </div>
 
         <div class="form-row">
-          <label class="remember"><input type="checkbox"> Remember me</label>
-          <a href="#" class="gold-text">Forgot password?</a>
+          <label class="remember"><input type="checkbox" id="remember"> Remember me</label>
+          
         </div>
 
         <button type="submit" class="btn btn-gold full" id="submitBtn">Sign in</button>
-        <button type="button" class="btn btn-dark full">Continue with Google</button>
 
         <p class="form-message" id="formMessage" role="status"></p>
-        <p class="switch" id="switchText">Don’t have an account? <a href="#" class="gold-text" id="switchLink">Create account</a></p>
+        <p class="switch"><span id="switchPrompt">New to StockPie?</span> <button type="button" class="link-button gold-text" id="switchLink">Create account</button></p>
         <p class="tiny-note center">Demo only — accounts are saved to a local JSON file.</p>
       </form>
     </section>
   </main>
-  <script src="auth.js"></script>
+
+  <!-- Shared helpers provide form requests, formatting, charts and dialogs; load them before page-specific code. -->
+  <script src="js/ui.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/auth.js"></script>
 </body>
 </html>
