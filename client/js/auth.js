@@ -1,6 +1,6 @@
 // One form serves both endpoints. Each submit reads fields, validates, then awaits the server.
 (function () {
-  const form = document.getElementById('authForm');
+  const form = document.getElementById('authForm'); //get element from html with this id
   const email = document.getElementById('email');
   const password = document.getElementById('password');
   const remember = document.getElementById('remember');
@@ -28,7 +28,7 @@
   });
   password.addEventListener('input', function () { password.setCustomValidity(''); });
 
-  form.addEventListener('submit', async function (event) {
+  form.addEventListener('submit', async function (event) { // tranferr your credentials to server
     event.preventDefault();
     password.setCustomValidity(password.value.length < 8 ? 'Use at least 8 characters.' : '');
     if (!form.reportValidity()) return;
