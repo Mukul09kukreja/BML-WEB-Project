@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<!-- Portfolio page: combine sample totals, performance, holdings, target allocation and the saved watchlist. -->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <!-- Use the device width so responsive CSS follows phone/tablet sizes rather than a desktop-sized canvas. -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="See what your simulated StockPie portfolio owns, how it is allocated and how it has performed.">
+  <title>Portfolio - StockPie</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <!-- Load shared colors, typography and layout first; pages.css adds component and inner-page rules. -->
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="pages.css">
+</head>
+<!-- main.js uses this page identifier to underline the matching shared navigation link. -->
+<body data-page="portfolio">
+
+  <!-- The Node server replaces the following marker with server/partials/header.html; use HTTP to see it. -->
+  <!-- shared:header -->
+
+  <main class="container page">
+    <!-- Guests see a sign-in prompt rather than the sample account holdings. -->
+    <section class="panel" data-signed-out hidden>
+      <h1 class="page-title">Your portfolio</h1>
+      <p class="page-sub">Sign in to view the demonstration portfolio and holdings.</p>
+      <a href="sign-in.html" class="btn btn-gold">Sign in</a>
+    </section>
+    <!-- main.js reveals this content only when a browser identity is available. -->
+    <div data-signed-in hidden>
+    <p class="eyebrow">Your investments</p>
+    <h1 class="page-title">Portfolio</h1>
+    <p class="tiny-note">Welcome, <span id="welcomeName">Demo investor</span>.</p>
+    <p class="page-sub">A closer look at what you own, how it's allocated and how it has performed.</p>
+
+    <!-- summary -->
+    <!-- data-portfolio attributes map to derived sample metrics that main.js formats consistently. -->
+    <div class="summary-grid">
+      <div class="index-card">
+        <span class="tiny-label">Total invested</span>
+        <strong class="summary-value" data-portfolio="cost"></strong>
+        <em class="muted-em">Holdings cost plus cash</em>
+      </div>
+      <div class="index-card">
+        <span class="tiny-label">Current value</span>
+        <strong class="summary-value" data-portfolio="value"></strong>
+        <em class="muted-em">Including $3,196.15 cash</em>
+      </div>
+      <div class="index-card">
+        <span class="tiny-label">Total gain</span>
+        <strong class="summary-value up" data-portfolio="gain"></strong>
+        <em class="up" data-portfolio="returnPct"></em>
+      </div>
+      <div class="index-card">
+        <span class="tiny-label">Cash available</span>
+        <strong class="summary-value" data-portfolio="cash"></strong>
+        <em class="muted-em">Sample cash balance</em>
+      </div>
+    </div>
+
+    <!-- performance chart -->
+    <section class="big-chart">
+        <div class="chart-head">
+          <div>
+            <span class="tiny-label">Portfolio performance</span>
+            <p class="chart-price"><span id="portfolioValue">$128,450.75</span> <em id="portfolioChange" class="up">+12.84%</em></p>
+          </div>
+          <!-- Button text names the catalog range; JavaScript changes the SVG path and aria-pressed state. -->
+          <div class="range-buttons" id="portfolioRanges" role="group" aria-label="Chart range">
+            <button type="button" aria-pressed="false">1W</button>
+            <button type="button" aria-pressed="false">1M</button>
+            <button type="button" aria-pressed="false">3M</button>
+            <button type="button" class="on" aria-pressed="true">1Y</button>
+            <button type="button" aria-pressed="false">All</button>
+          </div>
+        </div>
+        <!-- viewBox supplies chart coordinates; chart-line and chart-area are redrawn by UI.plot. -->
+        <svg viewBox="0 0 700 170" preserveAspectRatio="none" class="area-chart" id="portfolioChart" aria-label="Portfolio performance chart">
+          <defs>
+            <linearGradient id="portfolioFill" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#d4af37" stop-opacity=".3"/>
+              <stop offset="1" stop-color="#d4af37" stop-opacity="0"/>
+            </linearGradient>
+          </defs>
+          <g class="chart-grid">
+            <line x1="0" x2="700" y1="40" y2="40"/>
+            <line x1="0" x2="700" y1="80" y2="80"/>
+            <line x1="0" x2="700" y1="120" y2="120"/>
+          </g>
+          <path class="chart-area" fill="url(#portfolioFill)" d=""/>
+          <path class="chart-line" fill="none" stroke="#d4af37" stroke-width="2" d=""/>
+        </svg>
+      </section>
+
+    <!-- strategy + target allocation -->
+    <div class="dash-grid portfolio-top">
+      <section class="panel">
+        <h3>Allocation vs. target</h3>
+        <p class="tiny-note legend-note"><i class="swatch"></i>Current <i class="swatch target"></i>Target (Balanced strategy)</p>
+
+        <div class="alloc-row">
+          <div class="alloc-top"><span>Equities</span><b>58% <small>/ 60%</small></b></div>
+          <div class="bar-track"><div class="bar-fill" style="width:58%"></div><span class="bar-target" style="left:60%"></span></div>
+        </div>
+        <div class="alloc-row">
+          <div class="alloc-top"><span>Bonds</span><b>24% <small>/ 30%</small></b></div>
+          <div class="bar-track"><div class="bar-fill" style="width:24%"></div><span class="bar-target" style="left:30%"></span></div>
+        </div>
+        <div class="alloc-row">
+          <div class="alloc-top"><span>Gold</span><b>16% <small>/ 10%</small></b></div>
+          <div class="bar-track"><div class="bar-fill" style="width:16%"></div><span class="bar-target" style="left:10%"></span></div>
+        </div>
+        <div class="alloc-row">
+          <div class="alloc-top"><span>Cash</span><b>2% <small>/ 0%</small></b></div>
+          <div class="bar-track"><div class="bar-fill" style="width:2%"></div><span class="bar-target" style="left:0%"></span></div>
+        </div>
+      </section>
+
+      <section class="panel strategy-panel">
+        <h3>Current strategy</h3>
+        <p class="strategy-name">Balanced</p>
+        <p class="muted-sm">Growth &amp; stability</p>
+        <div class="row"><span>Risk level</span><div class="bars"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></div></div>
+        <div class="row"><span>Horizon</span><span>5-10 years</span></div>
+        <div class="rebalance">
+          <p class="tiny-label">Rebalance idea</p>
+          <p>Your gold holding is about 6 points above target. Moving roughly $7,700 from GLD into bonds would bring you back in line.</p>
+        </div>
+        <button type="button" class="btn btn-outline" id="rebalanceTrigger">Review rebalance</button>
+      </section>
+    </div>
+
+    <!-- holdings -->
+    <section class="table-card dash-block">
+      <div class="table-head">
+        <h3>Individual holdings</h3>
+        <p class="tiny-note">Demonstration data · <a href="markets.html" class="gold-text">add to watchlist</a></p>
+      </div>
+      <div class="table-scroll">
+        <table>
+          <thead>
+            <tr><th>Asset</th><th>Shares</th><th>Avg. cost</th><th>Price</th><th>Value</th><th>Gain / loss</th></tr>
+          </thead>
+          <!-- portfolio.js calculates each position value/return and generates the detailed holdings rows. -->
+          <tbody id="holdingsBody"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- performance + dividends -->
+    <div class="perf-grid dash-block">
+      <section class="table-card">
+        <div class="table-head">
+          <h3>Performance vs. S&amp;P 500</h3>
+          <p class="tiny-note">A balanced portfolio is expected to move less than an all-stock index.</p>
+        </div>
+        <div class="table-scroll">
+          <table>
+            <thead>
+              <tr><th>Period</th><th>Portfolio</th><th>S&amp;P 500</th><th>Difference</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>1 month</td><td class="mono up">+1.9%</td><td class="mono up">+2.4%</td><td class="mono down">-0.5%</td></tr>
+              <tr><td>3 months</td><td class="mono up">+4.2%</td><td class="mono up">+5.1%</td><td class="mono down">-0.9%</td></tr>
+              <tr><td>6 months</td><td class="mono up">+7.8%</td><td class="mono up">+9.3%</td><td class="mono down">-1.5%</td></tr>
+              <tr><td>1 year</td><td class="mono up">+12.8%</td><td class="mono up">+16.4%</td><td class="mono down">-3.6%</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h3>Dividend income</h3>
+        <div class="panel-row"><span>AGG · Oct 2025</span><b class="up">+$84.12</b></div>
+        <div class="panel-row"><span>VOO · Sep 2025</span><b class="up">+$61.20</b></div>
+        <div class="panel-row"><span>MSFT · Sep 2025</span><b class="up">+$45.00</b></div>
+        <div class="panel-row"><span>AAPL · Aug 2025</span><b class="up">+$29.40</b></div>
+      </section>
+    </div>
+
+    <!-- sample activity and saved watchlist -->
+    <div class="portfolio-panels dash-block">
+      <section class="panel">
+        <h3>Sample recent activity</h3>
+        <div class="panel-row"><span>Bought 10 VOO</span><b>Oct 27</b></div>
+        <div class="panel-row"><span>Dividend · AGG</span><b class="up">+$84.12</b></div>
+        <div class="panel-row"><span>Deposit</span><b class="up">+$500.00</b></div>
+        <div class="panel-row"><span>Bought 5 MSFT</span><b>Oct 15</b></div>
+      </section>
+
+      <section class="panel">
+        <h3>Watchlist <span class="tiny-note" id="watchlistCount"></span></h3>
+        <!-- portfolio.js reads saved symbols from localStorage and creates links back to Markets. -->
+        <div id="watchlistPanel"></div>
+      </section>
+
+    </div>
+
+    <p class="disclaimer">Demonstration data only. Past performance does not guarantee future results. Investing involves risk, including possible loss of principal.</p>
+    </div>
+  </main>
+
+  <!-- rebalance modal -->
+  <!-- One native dialog is reused; showModal handles the overlay and Escape, while UI helpers handle closing/focus. -->
+  <dialog class="modal" id="rebalanceDialog" aria-labelledby="rebalanceTitle">
+    <div class="modal-head">
+      <p class="eyebrow">Balanced strategy · target allocation</p>
+      <button type="button" class="modal-close" data-close aria-label="Close">&#10005;</button>
+    </div>
+    <article class="modal-body">
+      <h2 id="rebalanceTitle" tabindex="-1">Rebalance suggestion</h2>
+      <p class="muted-sm">Gold is 6 points above its 10% target. These two simulated trades would bring the portfolio back in line without changing your risk profile.</p>
+      <table class="mini-table">
+        <thead><tr><th>Action</th><th>Asset</th><th>Amount</th></tr></thead>
+        <tbody>
+          <tr><td class="down">Sell</td><td>GLD</td><td class="mono">$7,700.00</td></tr>
+          <tr><td class="up">Buy</td><td>AGG</td><td class="mono">$7,700.00</td></tr>
+        </tbody>
+      </table>
+      <p class="tiny-note">Executing trades becomes real in the next phase, when positions are stored in MongoDB.</p>
+      <button type="button" class="btn btn-gold btn-small" data-close>Got it</button>
+    </article>
+  </dialog>
+
+  <!-- The server inserts one shared footer here, including the newsletter form handled by main.js. -->
+  <!-- shared:footer -->
+
+  <!-- Load order matters: shared catalog, UI and storage must be available before the page controller runs. -->
+  <script src="js/data.js"></script>
+  <!-- Shared helpers provide form requests, formatting, charts and dialogs; load them before page-specific code. -->
+  <script src="js/ui.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/portfolio.js"></script>
+</body>
+</html>

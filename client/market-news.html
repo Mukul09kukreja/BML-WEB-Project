@@ -1,95 +1,68 @@
 <!DOCTYPE html>
+<!-- News page: read locally generated article cards and reuse one dialog for article reading. -->
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <!-- Use the device width so responsive CSS follows phone/tablet sizes rather than a desktop-sized canvas. -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Market News – StockPie</title>
+  <meta name="description" content="Market news and perspective for long-term passive investors.">
+  <title>Market News - StockPie</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <!-- Load shared colors, typography and layout first; pages.css adds component and inner-page rules. -->
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="pages.css">
 </head>
-<body>
-  <header class="navbar">
-    <a href="index.html" class="logo"><span class="logo-mark"></span>StockPie</a>
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="market-overview.html">Market Overview</a>
-      <a href="markets.html">Markets</a>
-      <a href="market-news.html" class="active">Market News</a>
-      <a href="#">Portfolio</a>
-      <a href="#">Dashboard</a>
-    </nav>
-    <div class="nav-actions">
-      <button class="icon-btn" aria-label="Search">&#9906;</button>
-      <button class="icon-btn" aria-label="Notifications">&#9832;</button>
-      <a href="sign-in.html" class="sign-in">Sign in</a>
-      <a href="sign-in.html" class="btn btn-gold btn-small">Get started</a>
-    </div>
-  </header>
+<!-- main.js uses this page identifier to underline the matching shared navigation link. -->
+<body data-page="market-news">
+
+  <!-- The Node server replaces the following marker with server/partials/header.html; use HTTP to see it. -->
+  <!-- shared:header -->
 
   <main class="container page">
     <p class="eyebrow">StockPie journal</p>
     <h1 class="page-title">Market news &amp; perspective</h1>
-    <p class="page-sub">Signal over noise for the thoughtful long-term investor.</p>
+    <p class="page-sub">Signal over noise for the thoughtful long-term investor. Open an article to read more.</p>
 
     <section class="featured-news">
       <div class="featured-copy">
         <p class="tiny-label">Featured · Demonstration content</p>
         <h2>The trends shaping tomorrow’s markets.</h2>
         <p>Understanding structural shifts in technology, capital and the global economy.</p>
-        <a href="#" class="btn btn-gold btn-small">Read article &rarr;</a>
+        <a href="market-overview.html" class="btn btn-gold btn-small">See the market overview &rarr;</a>
       </div>
     </section>
 
-    <div class="chips news-chips"><button class="chip on">All news</button><button class="chip">Stocks</button><button class="chip">ETFs</button><button class="chip">Global markets</button><button class="chip">Economy</button><button class="chip">Technology</button></div>
-    <div class="news-grid">
-      <article class="news-card">
-        <div class="news-img img-news-1"><span class="tag">Global markets</span></div>
-        <p class="tiny-note">Demonstration · 6 min read</p>
-        <h3>What a changing rate cycle means for investors</h3>
-        <p class="muted-sm">Principles and context for navigating complexity with confidence.</p>
-        <a href="#" class="link-small">Read more &rarr;</a>
-      </article>
-      <article class="news-card">
-        <div class="news-img img-news-2"><span class="tag">Economy</span></div>
-        <p class="tiny-note">Demonstration · 6 min read</p>
-        <h3>Reading the signals beneath headline volatility</h3>
-        <p class="muted-sm">Principles and context for navigating complexity with confidence.</p>
-        <a href="#" class="link-small">Read more &rarr;</a>
-      </article>
-      <article class="news-card">
-        <div class="news-img img-news-3"><span class="tag">Portfolio</span></div>
-        <p class="tiny-note">Demonstration · 6 min read</p>
-        <h3>The case for disciplined diversification</h3>
-        <p class="muted-sm">Principles and context for navigating complexity with confidence.</p>
-        <a href="#" class="link-small">Read more &rarr;</a>
-      </article>
-    </div>
+<!-- cards rendered by js/news.js -->
+    <!-- news.js generates article cards from data.js rather than maintaining separate article markup here. -->
+    <div class="news-grid" id="newsGrid"></div>
   </main>
 
-  <footer class="footer">
-    <div class="container footer-grid">
-      <div>
-        <a href="index.html" class="logo"><span class="logo-mark"></span>StockPie</a>
-        <p class="tiny-note">Intelligent investing for a stronger financial future.</p>
-        <p class="tiny-note">© 2025 StockPie. Demonstration experience.</p>
-      </div>
-      <div>
-        <h4>Platform</h4>
-        <a href="markets.html">Markets</a><a href="#">Portfolio</a><a href="#">Dashboard</a>
-      </div>
-      <div>
-        <h4>Resources</h4>
-        <a href="market-news.html">Market news</a><a href="#">Risk disclosure</a><a href="#">Privacy</a>
-      </div>
-      <div>
-        <h4>Important information</h4>
-        <p class="tiny-note">Investing involves risk, including loss of principal. All figures and content shown are illustrative.</p>
-      </div>
+  <!-- article modal -->
+  <!-- One native dialog is reused; showModal handles the overlay and Escape, while UI helpers handle closing/focus. -->
+  <dialog class="modal" id="newsDialog" aria-labelledby="newsDialogTitle">
+    <div class="modal-head">
+      <p class="eyebrow">StockPie journal</p>
+      <button type="button" class="modal-close" data-close aria-label="Close article">&#10005;</button>
     </div>
-  </footer>
-  <script src="script.js"></script>
+    <article class="modal-body">
+      <p class="tiny-note" id="newsDialogMeta"></p>
+      <h2 id="newsDialogTitle" tabindex="-1"></h2>
+      <div id="newsDialogBody" class="article-body"></div>
+      <button type="button" class="btn btn-gold btn-small" data-close>Close article</button>
+    </article>
+  </dialog>
+
+  <!-- The server inserts one shared footer here, including the newsletter form handled by main.js. -->
+  <!-- shared:footer -->
+
+  <!-- Load order matters: shared catalog, UI and storage must be available before the page controller runs. -->
+  <script src="js/data.js"></script>
+  <!-- Shared helpers provide form requests, formatting, charts and dialogs; load them before page-specific code. -->
+  <script src="js/ui.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/news.js"></script>
 </body>
 </html>
