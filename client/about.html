@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <!-- Use the device width so responsive CSS follows phone/tablet sizes rather than a desktop-sized canvas. -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="About StockPie - a risk-free stock market simulator built around passive index-fund strategies.">
+  <meta name="description" content="About StockPie - an Indian stock market simulator using virtual cash and NSE quotes.">
   <title>About - StockPie</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,6 +13,7 @@
   <!-- Load shared colors, typography and layout first; pages.css adds component and inner-page rules. -->
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="pages.css">
+  <link rel="stylesheet" href="experience.css">
 </head>
 <!-- main.js uses this page identifier to underline the matching shared navigation link. -->
 <body data-page="about">
@@ -22,21 +23,21 @@
 
   <main class="container page">
     <p class="eyebrow">About the project</p>
-    <h1 class="page-title">Passive investing, without the risk.</h1>
-    <p class="page-sub">StockPie is a student-built market simulator. Explore sample fund allocations and portfolio performance without using real money. Simulated order execution is planned for the next phase.</p>
+    <h1 class="page-title">Learn the principles. Build your confidence.</h1>
+    <p class="page-sub">StockPie is a student-built stock market simulator for supported NSE stocks, with prices from Yahoo Finance.</p>
 
     <!-- mission -->
     <section class="split-head about-intro">
       <div>
         <h2>Why we built it</h2>
-        <p class="muted-sm">Most first-time investors learn about markets through losses. We wanted a place to learn the other way around: understand diversification, see the effect of fees, watch a portfolio drift away from its target allocation — and fix it — before any real money is involved.</p>
-        <p class="muted-sm">The product is deliberately centred on passive funds. Instead of picking stocks to beat the index, you choose a strategy, allocate across asset classes and then monitor how the portfolio behaves.</p>
+        <p class="muted-sm">We built a simple place to practice buying and selling NSE stocks using virtual cash and timestamped market quotes.</p>
+        <p class="muted-sm">StockPie stores account credentials as password hashes and keeps each user's purchase records in MongoDB.</p>
       </div>
       <div class="panel about-stats">
-        <div class="panel-row"><span>Planned starting capital</span><b class="mono">$100,000</b></div>
-        <div class="panel-row"><span>Asset classes</span><b class="mono">6</b></div>
-        <div class="panel-row"><span>Strategies</span><b class="mono">3</b></div>
-        <div class="panel-row"><span>Real money at risk</span><b class="mono up">$0.00</b></div>
+        <div class="panel-row"><span>Database</span><b class="mono">MongoDB</b></div>
+        <div class="panel-row"><span>Price feed</span><b class="mono">yfinance</b></div>
+        <div class="panel-row"><span>Portfolio mode</span><b class="mono">Simulation</b></div>
+        <div class="panel-row"><span>Real orders placed</span><b class="mono up">No</b></div>
       </div>
     </section>
 
@@ -47,18 +48,18 @@
       <div class="panels">
         <article class="panel">
           <span class="feature-num">01</span>
-          <h3>Pick a strategy</h3>
-          <p class="muted-sm">Conservative, Balanced or Growth. Each one defines a target mix of equities, bonds and gold before you buy anything.</p>
+          <h3>Choose an NSE stock</h3>
+          <p class="muted-sm">Choose from the supported NSE stock list and check the current price before saving a purchase.</p>
         </article>
         <article class="panel">
           <span class="feature-num">02</span>
-          <h3>Allocate with funds</h3>
-          <p class="muted-sm">Buy broad index funds rather than single companies. Your portfolio value comes from the funds you hold, not from timing the market.</p>
+          <h3>Place a virtual trade</h3>
+          <p class="muted-sm">Buy within your virtual cash balance, or sell shares you own. Every account starts with ₹10 lakh in virtual cash.</p>
         </article>
         <article class="panel">
           <span class="feature-num">03</span>
-          <h3>Track and rebalance</h3>
-          <p class="muted-sm">Watch profit and loss, notice drift from your target weights, and rebalance back on purpose instead of on impulse.</p>
+          <h3>Track your progress</h3>
+          <p class="muted-sm">Your portfolio combines purchases by stock and compares the saved buy price with the latest available quote.</p>
         </article>
       </div>
     </section>
@@ -92,21 +93,21 @@
       <p class="eyebrow">Risk disclosure</p>
       <h2>What this site is not.</h2>
       <div class="panel disclosure-panel">
-        <p class="muted-sm">StockPie is an academic project. It is not a broker, it does not hold client money and it does not execute real orders.</p>
-        <p class="muted-sm">All prices, indices, news items and portfolio figures on this site are simulated demonstration data. Nothing here is investment advice, and no projection shown by the calculator is a promise of future returns.</p>
+        <p class="muted-sm">StockPie is an academic project. It is not a broker, does not hold client money and does not execute real orders.</p>
+        <p class="muted-sm">Trades are simulated only. Current prices come from Yahoo Finance through yfinance. Nothing here is investment advice.</p>
         <p class="muted-sm">Investing in real markets involves risk, including the possible loss of the money you invest. Past performance does not guarantee future results.</p>
       </div>
     </section>
 
-    <p class="disclaimer">Questions about the build? <a href="contact.html" class="gold-text">Send us a message</a> — it is saved to a local JSON file.</p>
   </main>
 
-  <!-- The server inserts one shared footer here, including the newsletter form handled by main.js. -->
+  <!-- The server inserts one shared footer here, with the shared navigation links. -->
   <!-- shared:footer -->
 
   <!-- Shared helpers provide form requests, formatting, charts and dialogs; load them before page-specific code. -->
-  <script src="js/ui.js"></script>
-  <script src="js/storage.js"></script>
-  <script src="js/main.js"></script>
+  <script src="js/shared/api.js"></script>
+  <script src="js/shared/ui.js"></script>
+  <script src="js/shared/main.js"></script>
+  <script src="js/shared/experience.js"></script>
 </body>
 </html>
