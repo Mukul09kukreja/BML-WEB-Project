@@ -1,38 +1,22 @@
+// Ui: browser page behavior and helpers.
 // Small helpers used by several pages. UI keeps their names in one place.
 const UI = {
   money: function (value) {
-    return value.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
-  },
-  number: function (value) {
-    return value.toLocaleString('en-US', { maximumFractionDigits: 2 });
+    if (value === null || value === undefined) return 'Unavailable';
+    return value.toLocaleString('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 2 });
   },
   signedPct: function (value) {
+    if (!Number.isFinite(value)) return '—';
     return (value > 0 ? '+' : '') + value.toFixed(2) + '%';
   },
-  trendClass: function (value) { return value < 0 ? 'down' : 'up'; },
-  price: function (value, decimals) {
-    return decimals ? '$' + value.toFixed(decimals) : UI.money(value);
+  trendClass: function (value) { return value < 0 ? 'down' : value > 0 ? 'up' : ''; },
+  quoteTime: function (value) {
+    return value ? new Date(value).toLocaleString('en-IN', { timeZone: 'Asia/Kolkata', dateStyle: 'medium', timeStyle: 'short' }) + ' IST' : 'No quote';
   },
-
-  // Send an object as JSON. Throw errors so each form can use one try/catch.
-  postJson: async function (url, values) {
-    let response;
-    try {
-      response = await fetch(url, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(values)
-      });
-    } catch (error) {
-      throw new Error('Could not reach the server. Run: npm run dev');
-    }
-    const data = await response.json();
-    if (!response.ok) throw new Error(data.error || 'Could not save the form.');
-    return data;
-  },
-
   // Convert numbers into an SVG line. High values have smaller y coordinates.
   plot: function (svg, values) {
+    if (!values.length) return;
+    if (values.length === 1) values = [values[0], values[0]];
     const width = svg.viewBox.baseVal.width;
     const height = svg.viewBox.baseVal.height;
     const low = Math.min(...values);
@@ -53,7 +37,8 @@ const UI = {
       button.addEventListener('click', function () { dialog.close(); });
     });
     dialog.addEventListener('click', function (event) {
-      if (event.target === dialog) dialog.close();
+      const bounds = dialog.getBoundingClientRect();
+      if (event.target === dialog && (event.clientX < bounds.left || event.clientX > bounds.right || event.clientY < bounds.top || event.clientY > bounds.bottom)) dialog.close();
     });
     dialog.addEventListener('close', function () { document.body.classList.remove('dialog-open'); });
   },

@@ -13,6 +13,7 @@
   <!-- Load shared colors, typography and layout first; pages.css adds component and inner-page rules. -->
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="pages.css">
+  <link rel="stylesheet" href="experience.css">
 </head>
 <!-- main.js uses this page identifier to underline the matching shared navigation link. -->
 <body data-page="market-news">
@@ -23,7 +24,7 @@
   <main class="container page">
     <p class="eyebrow">StockPie journal</p>
     <h1 class="page-title">Market news &amp; perspective</h1>
-    <p class="page-sub">Signal over noise for the thoughtful long-term investor. Open an article to read more.</p>
+    <p class="page-sub">Explore investing concepts, from diversification to market cycles. These sample articles are for learning, not current news.</p>
 
     <section class="featured-news">
       <div class="featured-copy">
@@ -34,7 +35,7 @@
       </div>
     </section>
 
-<!-- cards rendered by js/news.js -->
+<!-- cards rendered by js/pages/news.js -->
     <!-- news.js generates article cards from data.js rather than maintaining separate article markup here. -->
     <div class="news-grid" id="newsGrid"></div>
   </main>
@@ -54,15 +55,16 @@
     </article>
   </dialog>
 
-  <!-- The server inserts one shared footer here, including the newsletter form handled by main.js. -->
+  <!-- The server inserts one shared footer here, with the shared navigation links. -->
   <!-- shared:footer -->
 
   <!-- Load order matters: shared catalog, UI and storage must be available before the page controller runs. -->
-  <script src="js/data.js"></script>
+  <script src="js/data/samples.js"></script>
   <!-- Shared helpers provide form requests, formatting, charts and dialogs; load them before page-specific code. -->
-  <script src="js/ui.js"></script>
-  <script src="js/storage.js"></script>
-  <script src="js/main.js"></script>
-  <script src="js/news.js"></script>
+  <script src="js/shared/api.js"></script>
+  <script src="js/shared/ui.js"></script>
+  <script src="js/shared/main.js"></script>
+  <script src="js/pages/news.js"></script>
+  <script src="js/shared/experience.js"></script>
 </body>
 </html>

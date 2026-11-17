@@ -1,3 +1,4 @@
+// News: browser page behavior and helpers.
 // Every Read more button fills the same native dialog; no popup library is needed.
 (function () {
   const grid = document.getElementById('newsGrid');
