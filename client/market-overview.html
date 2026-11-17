@@ -5,6 +5,59 @@
   <meta charset="UTF-8">
   <!-- Use the device width so responsive CSS follows phone/tablet sizes rather than a desktop-sized canvas. -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Follow NSE stocks and current Yahoo Finance prices on StockPie.">
+  <title>Market Overview - StockPie</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <!-- Load shared colors, typography and layout first; pages.css adds component and inner-page rules. -->
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="pages.css">
+  <link rel="stylesheet" href="experience.css">
+</head>
+<!-- main.js uses this page identifier to underline the matching shared navigation link. -->
+<body data-page="market-overview">
+
+  <!-- The Node server replaces the following marker with server/partials/header.html; use HTTP to see it. -->
+  <!-- shared:header -->
+
+  <main class="container page">
+    <p class="eyebrow">Market intelligence</p>
+    <h1 class="page-title">Market overview</h1>
+    <p class="page-sub">Current supported NSE stock prices from Yahoo Finance.</p>
+
+    <div class="index-grid" id="indexGrid"></div>
+
+    <div>
+      <section class="panel">
+        <h3>Top movers</h3>
+        <div id="moverPanel"></div>
+      </section>
+    </div>
+
+    <p class="disclaimer" id="feedNote" role="status"></p>
+  </main>
+
+  <!-- The server inserts one shared footer here, with the shared navigation links. -->
+  <!-- shared:footer -->
+
+  <!-- Load order matters: shared catalog, UI and storage must be available before the page controller runs. -->
+  <!-- Shared helpers provide form requests, formatting, charts and dialogs; load them before page-specific code. -->
+  <script src="js/shared/api.js"></script>
+  <script src="js/shared/ui.js"></script>
+  <script src="js/shared/main.js"></script>
+  <script src="js/pages/overview.js"></script>
+  <script src="js/shared/experience.js"></script>
+</body>
+</html>
+
+<!DOCTYPE html>
+<!-- Overview page: provide containers for generated market cards and a range-controlled SVG chart. -->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <!-- Use the device width so responsive CSS follows phone/tablet sizes rather than a desktop-sized canvas. -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Track global indices, sectors, movers and macro indicators on StockPie.">
   <title>Market Overview - StockPie</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
