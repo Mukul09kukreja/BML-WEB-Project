@@ -1,83 +1,54 @@
-// Simple StockPie login system: Express + a local JSON file.
-const express = require('express');
-const bcrypt = require('bcryptjs');
-const fs = require('fs');
-const path = require('path');
+// Connect to MongoDB, start the HTTP server, and drain requests during shutdown.
+require('dotenv').config({ quiet: true });
+const crypto = require('node:crypto');
+const mongoose = require('mongoose');
+const Market = require('./services/market');
+const { createApp } = require('./app');
 
-const app = express();
-const PORT = process.env.PORT || 3000;
-const CLIENT = path.join(__dirname, '../client');
-const USERS_FILE = path.join(__dirname, 'users.json');
+async function start() {
+  if (!process.env.MONGODB_URI) throw new Error('Set MONGODB_URI in .env to connect MongoDB.');
+  const production = process.env.NODE_ENV === 'production';
+  const secret = process.env.SESSION_SECRET || (production ? '' : crypto.randomBytes(32).toString('hex'));
+  if (secret.length < 32) throw new Error('Set SESSION_SECRET to at least 32 characters.');
 
-app.use(express.json({ limit: '10kb' })); // Middleware is code that processes requests before they reach your route handlers.
-//The 10kb limit restricts the size of the incoming JSON request body.
+  await mongoose.connect(process.env.MONGODB_URI, process.env.MONGODB_DB_NAME ? { dbName: process.env.MONGODB_DB_NAME } : {});
 
-// Without JSON-parsing middleware, Express would not automatically parse this body into req.body.
+  const market = new Market();
+  market.start();
+  await mongoose.connection.collection('sessions').createIndex({ expires: 1 }, { expireAfterSeconds: 0 });
+  const streams = new Set();
+  market.on('stream:open', response => {
+    streams.add(response);
+    response.on('close', () => streams.delete(response));
+  });
+  const app = createApp({ market, secret, production });
+  const port = Number(process.env.PORT) || 3000;
+  const server = app.listen(port, () => console.log(`StockPie running at http://localhost:${port}`));
 
-// Read registered accounts. The file contains password HASHES, not passwords.
-function getUsers() {
-  return JSON.parse(fs.readFileSync(USERS_FILE, 'utf8'));
+  let stopping = false;
+  const stop = async () => {
+    if (stopping) return;
+    stopping = true;
+    market.stop();
+    // Close long-lived quote streams, then let ordinary requests finish using MongoDB.
+    const drained = new Promise((resolve, reject) => {
+      server.close(error => error ? reject(error) : resolve());
+    });
+    for (const response of streams) response.end();
+    try {
+      await drained;
+      await mongoose.disconnect();
+      process.exit(0);
+    } catch (error) {
+      console.error('Shutdown failed:', error.message);
+      process.exit(1);
+    }
+  };
+  process.on('SIGINT', stop);
+  process.on('SIGTERM', stop);
 }
-function saveUsers(users) {
-  fs.writeFileSync(USERS_FILE, JSON.stringify(users, null, 2));
-}
 
-// Sign up: validate -> check duplicate -> hash password -> save to JSON.
-app.post('/api/signup', async (req, res) => {
-  try {
-    const { email, password } = req.body || {};
-    if (typeof email !== 'string' || email.length > 160 ||
-        !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim()) ||
-        typeof password !== 'string' || password.length < 8 || password.length > 200) {
-      return res.status(400).json({ error: 'Enter a valid email and password (at least 8 characters).' });
-    }
-    const cleanEmail = email.trim().toLowerCase();
-    const users = getUsers();
-    if (users.some(user => user.email === cleanEmail)) { // check for duplicates
-      return res.status(409).json({ error: 'Email already registered.' });
-    }
-    const hashedPassword = await bcrypt.hash(password, 10); // hash password with salt 10
-    users.push({ email: cleanEmail, password: hashedPassword }); // save user 
-    saveUsers(users);
-    res.status(201).json({ message: 'Account created.' });
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: 'Server error.' });
-  }
+start().catch(error => {
+  console.error('Startup failed:', error.message);
+  process.exitCode = 1;
 });
-
-// Sign in: find email -> compare entered password with stored hash.
-app.post('/api/signin', async (req, res) => {
-  try {
-    const { email, password } = req.body || {};
-    if (typeof email !== 'string' || typeof password !== 'string') {
-      return res.status(400).json({ error: 'Enter email and password.' });
-    }
-    const user = getUsers().find(user => user.email === email.trim().toLowerCase());
-    if (!user || !(await bcrypt.compare(password, user.password))) { // bcrypt.compare() checks whether the entered plaintext password matches the stored bcrypt hash.
-      return res.status(401).json({ error: 'Incorrect email or password.' });
-    }
-    res.json({ message: 'Signed in.', email: user.email });
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: 'Server error.' });
-  }
-});
-
-// backend serves HTML pages
-
-// Serve existing website and insert shared header/footer.
-app.get('/', (req, res) => res.redirect('/index.html'));
-app.get(/^\/[^/]+\.html$/, (req, res, next) => {
-  const name = path.basename(req.path);
-  const file = path.join(CLIENT, name);
-  if (!fs.existsSync(file)) return next();
-  let html = fs.readFileSync(file, 'utf8');
-  html = html.replace('<!-- shared:header -->', fs.readFileSync(path.join(__dirname, 'partials/header.html'), 'utf8'));
-  html = html.replace('<!-- shared:footer -->', fs.readFileSync(path.join(__dirname, 'partials/footer.html'), 'utf8'));
-  res.type('html').send(html);
-});
-app.use(express.static(CLIENT));
-
-if (!fs.existsSync(USERS_FILE)) saveUsers([]);
-app.listen(PORT, () => console.log(`Server running at http://localhost:${PORT}`));

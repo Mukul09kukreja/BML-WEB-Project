@@ -5,14 +5,16 @@
   <meta charset="UTF-8">
   <!-- Use the device width so responsive CSS follows phone/tablet sizes rather than a desktop-sized canvas. -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="StockPie - a risk-free stock market simulator built around passive index-fund strategies.">
-  <title>StockPie - Smart passive investing</title>
+  <meta name="description" content="StockPie - an Indian stock market simulator with virtual cash and NSE quotes.">
+  <title>StockPie - Indian stock market simulator</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
   <!-- Load shared colors, typography and layout first; pages.css adds component and inner-page rules. -->
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="pages.css">
+  <link rel="stylesheet" href="home-visuals.css">
+  <link rel="stylesheet" href="experience.css">
 </head>
 <!-- main.js uses this page identifier to underline the matching shared navigation link. -->
 <body data-page="index">
@@ -27,51 +29,73 @@
       <div class="hero-text">
         <p class="eyebrow">The future of smart investing</p>
         <h1>Your <span class="gold">Wealth.</span><br>Your Strategy.<br>Your Future.</h1>
-        <p class="hero-sub">Take control of your financial future with intelligent passive investment strategies, powerful market insights, and effortless portfolio management.</p>
+        <p class="hero-sub">Practice buying and selling supported NSE stocks with ₹10 lakh in virtual cash. Follow your holdings and learn without using real money.</p>
         <div class="hero-buttons">
-          <a href="sign-in.html?mode=signup" class="btn btn-gold">Start investing &rarr;</a>
+          <a href="sign-in.html?mode=signup" class="btn btn-gold">Start practicing &rarr;</a>
           <a href="markets.html" class="btn btn-dark">Explore markets</a>
         </div>
         <ul class="hero-checks">
-          <li>Diversified investing</li>
-          <li>Data-driven insights</li>
-          <li>Long-term growth</li>
+          <li>NSE stocks</li>
+          <li>Virtual trading</li>
+          <li>Portfolio tracking</li>
         </ul>
       </div>
 
+      <div class="hero-visual">
+        <div class="visual-scene">
+          <img src="assets/architecture.jpg" alt="Glass towers viewed from below" width="1200" height="800" fetchpriority="high">
+          <span class="scene-caption">A broader perspective.</span>
+        </div>
+        <section class="market-preview" aria-label="Interactive sample market chart">
+          <div class="preview-heading"><span class="tiny-label">Market perspective</span><span class="live-tag">Demo data</span></div>
+          <div class="preview-heading"><div><p class="demo-label">Illustrative index</p><strong id="previewValue">132.00</strong></div><span id="previewChange" class="up">+32.00%</span></div>
+          <div class="preview-ranges" role="group" aria-label="Chart time range">
+            <button type="button" data-preview-range="1W" aria-pressed="false">1W</button>
+            <button type="button" data-preview-range="1M" aria-pressed="false">1M</button>
+            <button type="button" data-preview-range="1Y" aria-pressed="true">1Y</button>
+            <button type="button" data-preview-range="5Y" aria-pressed="false">5Y</button>
+          </div>
+          <svg id="previewChart" viewBox="0 0 360 130" role="img" aria-label="Illustrative one-year index chart">
+            <defs><linearGradient id="previewFill" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#d4af37" stop-opacity=".32"/><stop offset="1" stop-color="#d4af37" stop-opacity="0"/></linearGradient></defs>
+            <path class="chart-area" fill="url(#previewFill)" d="M8 122 L57 92 L106 107 L155 63 L204 78 L253 34 L302 49 L352 8 L352 130 L8 130Z"/>
+            <path class="chart-line" fill="none" stroke="#e8c967" stroke-width="2.5" d="M8 122 L57 92 L106 107 L155 63 L204 78 L253 34 L302 49 L352 8"/>
+          </svg>
+          <p id="previewSummary" class="preview-note" role="status">1Y sample · normalized starting value of 100</p>
+          <a class="link-small" href="market-overview.html">Explore the market overview &rarr;</a>
+        </section>
       <!-- Hidden until main.js confirms a signed-in browser identity; prevents a guest flash. -->
-      <div class="demo-card" data-signed-in hidden>
-        <div class="demo-top">
-          <span class="tiny-label">Demo portfolio</span>
-          <span class="live-tag">Sample portfolio</span>
-        </div>
-        <p class="demo-label">Portfolio value</p>
-        <p class="demo-value" id="demoValue" data-portfolio="value">$128,450.75</p>
-        <p class="demo-change"><span data-portfolio="gain"></span> <span class="badge-green" data-portfolio="returnPct"></span></p>
-        <svg class="demo-chart" viewBox="0 0 300 90" preserveAspectRatio="none" aria-hidden="true">
-          <defs>
-            <linearGradient id="heroFill" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0" stop-color="#d4af37" stop-opacity=".35"/>
-              <stop offset="1" stop-color="#d4af37" stop-opacity="0"/>
-            </linearGradient>
-          </defs>
-          <path d="M0 80 L30 62 L50 66 L80 40 L105 48 L135 30 L165 42 L200 22 L235 30 L265 12 L300 8 L300 90 L0 90Z" fill="url(#heroFill)"/>
-          <path d="M0 80 L30 62 L50 66 L80 40 L105 48 L135 30 L165 42 L200 22 L235 30 L265 12 L300 8" fill="none" stroke="#d4af37" stroke-width="2"/>
-        </svg>
-        <div class="legend">
-          <span><i class="dot gold-dot"></i>Equities<b>58%</b></span>
-          <span><i class="dot grey-dot"></i>Bonds<b>24%</b></span>
-          <span><i class="dot dark-dot"></i>Gold / cash<b>18%</b></span>
-        </div>
+<div class="demo-card" data-signed-in hidden><p class="tiny-label">Your virtual portfolio</p><p class="demo-value" data-portfolio="value">Loading…</p><p data-portfolio="gain"></p><a href="portfolio.html" class="link-small">Open portfolio →</a>
+      </div>
       </div>
     </div>
 
-    <!-- market ticker: rendered by js/home.js from js/data.js -->
-    <!-- home.js inserts index values here using the shared data catalog. -->
-    <div class="ticker" id="ticker" aria-label="Market indices"></div>
+    <!-- Quote ticker rendered by js/pages/ticker.js. -->
+
+    <section class="market-tape" aria-label="NSE quote ticker">
+      <div class="tape-header"><p><span class="tape-dot" aria-hidden="true"></span>Market pulse <span>Shared market feed · virtual trading</span></p><button type="button" id="tickerPause" aria-pressed="false">Pause ticker</button></div>
+      <div class="ticker" id="ticker" tabindex="0" aria-label="Supported NSE stocks. Use Pause ticker to pause updates."></div>
+    </section>
   </section>
 
   <!-- WHY STOCKPIE -->
+  <section class="section market-film">
+    <div class="container film-layout">
+      <div class="film-copy">
+        <p class="eyebrow">The bigger picture</p>
+        <h2>A world in motion.<br>A <span class="gold">long-term view.</span></h2>
+        <p class="muted-sm">Behind every index is a world of businesses, people, and ideas. Explore the markets, compare strategies, and practice building your own portfolio.</p>
+        <a href="market-overview.html" class="btn btn-dark">Explore NSE stocks &rarr;</a>
+        <p class="media-credit">City footage by <a href="https://www.pexels.com/video/sunset-over-modern-city-skyline-29474100/" target="_blank" rel="noopener noreferrer">Natalya Rostun / Pexels</a>. Visual illustration, no narration.</p>
+      </div>
+      <figure class="film-frame">
+        <video controls muted playsinline preload="none" poster="assets/city.jpg" aria-label="Sunset over a modern city skyline">
+          <source src="assets/city-motion.mp4" type="video/mp4">
+          Your browser does not support video. <a href="assets/city-motion.mp4">Download the city clip</a>.
+        </video>
+        <figcaption>Global perspective / City in motion</figcaption>
+      </figure>
+    </div>
+  </section>
   <section class="section">
     <div class="container">
       <p class="eyebrow">Why StockPie</p>
@@ -85,21 +109,21 @@
           <span class="feature-num">01</span>
           <div class="feature-icon">&#9638;</div>
           <h3>Smart diversification</h3>
-          <p>Build resilient portfolios with research-led allocations across global assets.</p>
+          <p>Learn how spreading virtual purchases across Indian stocks changes your portfolio.</p>
           <a href="about.html#strategies" class="link-small">Learn more &rarr;</a>
         </article>
         <article class="feature">
           <span class="feature-num">02</span>
           <div class="feature-icon">&#9617;</div>
           <h3>Long-term wealth building</h3>
-          <p>Stay focused on your goals with disciplined, passive investment strategies.</p>
+          <p>Explore hypothetical long-term growth with the wealth calculator.</p>
           <a href="about.html#strategies" class="link-small">Learn more &rarr;</a>
         </article>
         <article class="feature">
           <span class="feature-num">03</span>
           <div class="feature-icon">&#9678;</div>
           <h3>Market intelligence</h3>
-          <p>Cut through the noise with clear, contextual insights across global markets.</p>
+          <p>Compare supported NSE stocks with timestamped Yahoo Finance quotes.</p>
           <a href="market-overview.html" class="link-small">Learn more &rarr;</a>
         </article>
         <article class="feature">
@@ -115,9 +139,9 @@
 
   <section class="section section-alt">
     <div class="container">
-      <p class="eyebrow">Passive fund strategies</p>
+      <p class="eyebrow">Illustrative asset allocations</p>
       <h2>Choose a mix that fits your goals.</h2>
-      <p class="muted-sm">Compare Conservative, Balanced and Growth allocations before exploring the sample portfolio.</p>
+      <p class="muted-sm">Explore sample allocations for learning. These examples do not place trades or change your portfolio.</p>
       <a href="about.html#strategies" class="btn btn-outline">Compare strategies &rarr;</a>
     </div>
   </section>
@@ -132,11 +156,11 @@
         <p class="muted-sm">Small, disciplined contributions can compound into meaningful progress over time.</p>
 
         <div class="slider-block">
-          <label for="initial"><span>Initial investment</span><strong id="initialOut">$10,000</strong></label>
+          <label for="initial"><span>Initial investment</span><strong id="initialOut">₹10,000</strong></label>
           <input type="range" id="initial" min="1000" max="100000" step="1000" value="10000">
         </div>
         <div class="slider-block">
-          <label for="monthly"><span>Monthly contribution</span><strong id="monthlyOut">$500</strong></label>
+          <label for="monthly"><span>Monthly contribution</span><strong id="monthlyOut">₹500</strong></label>
           <input type="range" id="monthly" min="0" max="5000" step="50" value="500">
         </div>
         <div class="slider-block">
@@ -148,7 +172,7 @@
 
       <div class="calc-card">
         <p class="muted-sm">Estimated portfolio value</p>
-        <p class="calc-value" id="finalValue">$102,900</p>
+        <p class="calc-value" id="finalValue">₹1,02,900</p>
         <p class="tiny-note" id="calcNote">After 10 years · 7% assumed annual return</p>
         <!-- calculator.js replaces the line/area paths with values computed from the slider inputs. -->
         <svg class="calc-chart" id="calcChart" viewBox="0 0 400 130" preserveAspectRatio="none" aria-hidden="true">
@@ -162,8 +186,8 @@
           <path class="chart-line" fill="none" stroke="#d4af37" stroke-width="2" d=""/>
         </svg>
         <div class="calc-totals">
-          <div><span>Total invested</span><strong id="invested">$70,000</strong></div>
-          <div><span>Est. growth</span><strong class="gold" id="growth">$32,900</strong></div>
+          <div><span>Total invested</span><strong id="invested">₹70,000</strong></div>
+          <div><span>Est. growth</span><strong class="gold" id="growth">₹32,900</strong></div>
         </div>
         <button type="button" class="btn btn-dark full" id="savePlan">Save this plan</button>
         <p id="planStatus" class="tiny-note" role="status"></p>
@@ -181,7 +205,7 @@
         <a href="market-news.html" class="btn btn-dark">View all insights</a>
       </div>
 
-      <!-- rendered by js/home.js -->
+      <!-- rendered by js/pages/home.js -->
       <!-- home.js previews three news records and links each one to the matching article dialog. -->
       <div class="insights" id="homeInsights"></div>
     </div>
@@ -196,16 +220,20 @@
   </section>
 
   <!-- FOOTER -->
-  <!-- The server inserts one shared footer here, including the newsletter form handled by main.js. -->
+  <!-- The server inserts one shared footer here, with the shared navigation links. -->
   <!-- shared:footer -->
 
   <!-- Load order matters: shared catalog, UI and storage must be available before the page controller runs. -->
-  <script src="js/data.js"></script>
+  <script src="js/data/samples.js"></script>
   <!-- Shared helpers provide form requests, formatting, charts and dialogs; load them before page-specific code. -->
-  <script src="js/ui.js"></script>
-  <script src="js/storage.js"></script>
-  <script src="js/main.js"></script>
-  <script src="js/home.js"></script>
-  <script src="js/calculator.js"></script>
+  <script src="js/shared/api.js"></script>
+  <script src="js/shared/ui.js"></script>
+  <script src="js/shared/storage.js"></script>
+  <script src="js/shared/main.js"></script>
+  <script src="js/pages/home.js"></script>
+  <script src="js/pages/ticker.js"></script>
+  <script src="js/pages/home-visuals.js"></script>
+  <script src="js/pages/calculator.js"></script>
+  <script src="js/shared/experience.js"></script>
 </body>
 </html>
