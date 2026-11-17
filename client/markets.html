@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <!-- Use the device width so responsive CSS follows phone/tablet sizes rather than a desktop-sized canvas. -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Browse stocks, ETFs, indices, bonds, commodities and currencies on StockPie's simulated market.">
+  <meta name="description" content="Browse NSE stocks and current Yahoo Finance prices.">
   <title>Markets - StockPie</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,6 +13,7 @@
   <!-- Load shared colors, typography and layout first; pages.css adds component and inner-page rules. -->
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="pages.css">
+  <link rel="stylesheet" href="experience.css">
 </head>
 <!-- main.js uses this page identifier to underline the matching shared navigation link. -->
 <body data-page="markets">
@@ -23,28 +24,21 @@
   <main class="container page">
     <p class="eyebrow">Discover opportunity</p>
     <h1 class="page-title">Explore markets</h1>
-    <p class="page-sub">Research global stocks, ETFs, indices and funds. Search the demonstration catalog or save funds to your watchlist.</p>
+    <p class="page-sub">Browse supported NSE stocks and their latest Yahoo Finance prices.</p>
 
     <label class="search-box" for="marketSearch">
       <span aria-hidden="true">&#9906;</span>
-      <input type="search" id="marketSearch" placeholder="Search stocks, ETFs, indices, funds..." autocomplete="off">
+      <input type="search" id="marketSearch" placeholder="Search NSE stocks..." autocomplete="off">
     </label>
 
-    <!-- data-filter values must match catalog asset categories; button clicks change the visible rows. -->
-    <div class="chips" role="group" aria-label="Filter by asset type">
-      <button class="chip on" type="button" data-filter="all">All markets</button>
-      <button class="chip" type="button" data-filter="stocks">Stocks</button>
-      <button class="chip" type="button" data-filter="etfs">ETFs</button>
-      <button class="chip" type="button" data-filter="indices">Indices</button>
-      <button class="chip" type="button" data-filter="bonds">Bonds</button>
-      <button class="chip" type="button" data-filter="commodities">Commodities</button>
-      <button class="chip" type="button" data-filter="currencies">Currencies</button>
+    <div class="market-tools">
+      <button type="button" class="btn btn-dark btn-small" id="resetMarkets">Reset filters</button>
     </div>
 
     <section class="table-card">
       <div class="table-head">
         <h3>Market universe</h3>
-        <p class="tiny-note">Sample pricing · click a column to sort · ★ saves to your watchlist</p>
+        <p class="tiny-note">INR prices · click a column to sort</p>
       </div>
       <div class="table-scroll">
         <table>
@@ -54,8 +48,7 @@
               <th>Ticker</th>
               <th data-sort="price">Price <span class="sort-arrow">▲</span></th>
               <th data-sort="changePct">Daily change <span class="sort-arrow">▲</span></th>
-              <th>Market size</th>
-              <th data-sort="volume">Volume <span class="sort-arrow">▲</span></th>
+              <th>Quote time (IST)</th>
             </tr>
           </thead>
           <!-- markets.js filters, sorts and displays rows whenever an input changes. -->
@@ -69,15 +62,15 @@
     </section>
   </main>
 
-  <!-- The server inserts one shared footer here, including the newsletter form handled by main.js. -->
+  <!-- The server inserts one shared footer here, with the shared navigation links. -->
   <!-- shared:footer -->
 
   <!-- Load order matters: shared catalog, UI and storage must be available before the page controller runs. -->
-  <script src="js/data.js"></script>
   <!-- Shared helpers provide form requests, formatting, charts and dialogs; load them before page-specific code. -->
-  <script src="js/ui.js"></script>
-  <script src="js/storage.js"></script>
-  <script src="js/main.js"></script>
-  <script src="js/markets.js"></script>
+  <script src="js/shared/api.js"></script>
+  <script src="js/shared/ui.js"></script>
+  <script src="js/shared/main.js"></script>
+  <script src="js/pages/markets.js"></script>
+  <script src="js/shared/experience.js"></script>
 </body>
 </html>
