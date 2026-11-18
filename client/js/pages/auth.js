@@ -1,7 +1,7 @@
 // Auth: browser page behavior and helpers.
-(async function () {
+(async function () { // async function used for any event 
   await API.ready;
-  const form = document.getElementById('authForm');
+  const form = document.getElementById('authForm'); // take element from html
   const username = document.getElementById('username');
   const password = document.getElementById('password');
   const remember = document.getElementById('remember');
