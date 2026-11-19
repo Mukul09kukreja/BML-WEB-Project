@@ -50,6 +50,10 @@ document.addEventListener('DOMContentLoaded', async () => {
   }
   const stream = new EventSource('/api/market/stream');
   stream.onmessage = event => { try { API.applyMarket(JSON.parse(event.data)); } catch { /* Wait for next valid update. */ } };
-  stream.onerror = () => document.querySelectorAll('[data-feed-status]').forEach(el => { el.textContent = 'Market connection interrupted · reconnecting'; });
+  stream.onerror = () => API.applyMarket({
+    ...API.market,
+    status: 'Market connection interrupted · reconnecting',
+    assets: API.market.assets.map(asset => ({ ...asset, stale: true }))
+  });
   window.addEventListener('pagehide', () => stream.close());
 });

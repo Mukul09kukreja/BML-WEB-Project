@@ -26,7 +26,7 @@
     const cashInPaise = Math.round((portfolio?.cash || 0) * 100);
     const affordable = side.value === 'buy' ? costInPaise <= cashInPaise : count <= owned;
     document.getElementById('tradeEstimate').textContent = asset?.price
-      ? `${side.value === 'buy' ? 'Cost' : 'Proceeds'}: ${UI.money(asset.price * count)} · ${UI.quoteTime(asset.timestamp)}${asset.stale ? ' · stale: trading paused' : ''} · Owned: ${owned}`
+      ? `${side.value === 'buy' ? 'Cost' : 'Proceeds'}: ${UI.money(costInPaise / 100)} · ${UI.quoteTime(asset.timestamp)}${asset.stale ? ' · stale: trading paused' : ''} · Owned: ${owned}`
       : 'Price unavailable. Waiting for the market feed.';
     if (busy) button.textContent = 'Submitting…';
     else if (pending) button.textContent = 'Retry pending trade';
@@ -67,7 +67,7 @@
   // Rebuild stock options while retaining the selected stock.
   function updateStocks() {
     const selected = pending?.symbol || select.value || requested;
-    select.replaceChildren(...API.market.assets.map(asset => new Option(`${asset.symbol} · ${asset.name}`, asset.symbol)));
+    select.replaceChildren(...API.market.assets.map(asset => new Option(`${asset.symbol} · ${asset.name}${!asset.price ? ' · Price unavailable' : ''}`, asset.symbol)));
     if ([...select.options].some(option => option.value === selected)) select.value = selected;
     estimate();
   }

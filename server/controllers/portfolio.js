@@ -3,6 +3,7 @@
 const User = require('../models/user');
 const catalog = require('../data/stocks');
 const { trade } = require('../services/trading');
+const calculatePortfolio = require('../services/portfolio');
 
 const fail = (message, status = 400) => Object.assign(new Error(message), { status });
 
@@ -28,7 +29,8 @@ module.exports = function (market) {
         if (!user) throw fail('Sign in again.', 401);
         const previous = user.trades.find(order => order.id === id);
         const quote = market.list().find(item => item.symbol === symbol);
-        if (!previous && (!quote?.price || quote.stale)) throw fail('A recent market price is unavailable. Trading is paused.', 503);
+        // This is a definite rejection before saving, so clients may unlock the trade form.
+        if (!previous && (!quote?.price || quote.stale)) throw fail('A recent market price is unavailable. Trading is paused.', 422);
         const order = trade(user, { id, side, symbol, quantity }, asset, previous?.price ?? quote.price);
         try {
           if (!previous) await user.save();

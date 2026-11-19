@@ -33,7 +33,7 @@
     showMessage('');
   }
 
-  switchButton.addEventListener('click', () => { mode = mode === 'signup' ? 'signin' : 'signup'; showMode(); });
+  switchButton.addEventListener('click', () => { if (switchButton.disabled) return; mode = mode === 'signup' ? 'signin' : 'signup'; showMode(); });
   document.getElementById('revealPassword').addEventListener('click', event => {
     password.type = password.type === 'password' ? 'text' : 'password';
     event.target.textContent = password.type === 'password' ? 'Show' : 'Hide';
@@ -41,8 +41,8 @@
   });
   form.addEventListener('submit', async event => {
     event.preventDefault();
-    if (!form.reportValidity()) return;
-    button.disabled = true;
+    if (button.disabled || !form.reportValidity()) return;
+    button.disabled = switchButton.disabled = true;
     showMessage('Please wait…');
     try {
       if (!API.csrf) await API.session();
@@ -56,7 +56,7 @@
         showMessage(result.message, 'ok');
       } else location.href = 'portfolio.html' + (symbol ? '?symbol=' + encodeURIComponent(symbol) : '');
     } catch (error) { showMessage(error.message, 'error'); }
-    finally { button.disabled = false; }
+    finally { button.disabled = switchButton.disabled = false; }
   });
   showMode();
   if (API.error) showMessage(API.error, 'error');
